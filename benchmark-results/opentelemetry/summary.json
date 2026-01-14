@@ -1,0 +1,357 @@
+{
+  "TotalRuns": 936,
+  "TotalPassed": 126,
+  "TotalFailed": 810,
+  "TotalCost": 481.57756585600026,
+  "TotalDuration": 843641873160000,
+  "ByModel": {
+    "openrouter/anthropic/claude-haiku-4.5": {
+      "Model": "openrouter/anthropic/claude-haiku-4.5",
+      "Runs": 72,
+      "Passed": 4,
+      "Failed": 68,
+      "PassRate": 5.555555555555555,
+      "TotalCost": 30.28984985000001,
+      "AvgCost": 0.4206923590277779,
+      "AvgDuration": 539206209291
+    },
+    "openrouter/anthropic/claude-opus-4.5": {
+      "Model": "openrouter/anthropic/claude-opus-4.5",
+      "Runs": 72,
+      "Passed": 20,
+      "Failed": 52,
+      "PassRate": 27.77777777777778,
+      "TotalCost": 87.90890475000002,
+      "AvgCost": 1.220957010416667,
+      "AvgDuration": 762221725500
+    },
+    "openrouter/anthropic/claude-sonnet-4.5": {
+      "Model": "openrouter/anthropic/claude-sonnet-4.5",
+      "Runs": 72,
+      "Passed": 15,
+      "Failed": 57,
+      "PassRate": 20.833333333333336,
+      "TotalCost": 70.52292539999999,
+      "AvgCost": 0.9794850749999999,
+      "AvgDuration": 693066507000
+    },
+    "openrouter/deepseek/deepseek-v3.2": {
+      "Model": "openrouter/deepseek/deepseek-v3.2",
+      "Runs": 72,
+      "Passed": 8,
+      "Failed": 64,
+      "PassRate": 11.11111111111111,
+      "TotalCost": 12.067324855999999,
+      "AvgCost": 0.1676017341111111,
+      "AvgDuration": 1319979613111
+    },
+    "openrouter/google/gemini-3-flash-preview": {
+      "Model": "openrouter/google/gemini-3-flash-preview",
+      "Runs": 72,
+      "Passed": 13,
+      "Failed": 59,
+      "PassRate": 18.055555555555554,
+      "TotalCost": 7.682379750000002,
+      "AvgCost": 0.10669971875000002,
+      "AvgDuration": 369721716263
+    },
+    "openrouter/google/gemini-3-pro-preview": {
+      "Model": "openrouter/google/gemini-3-pro-preview",
+      "Runs": 72,
+      "Passed": 11,
+      "Failed": 61,
+      "PassRate": 15.277777777777779,
+      "TotalCost": 33.827324399999995,
+      "AvgCost": 0.46982394999999993,
+      "AvgDuration": 514456401694
+    },
+    "openrouter/moonshotai/kimi-k2-thinking": {
+      "Model": "openrouter/moonshotai/kimi-k2-thinking",
+      "Runs": 72,
+      "Passed": 5,
+      "Failed": 67,
+      "PassRate": 6.944444444444445,
+      "TotalCost": 9.244996880000002,
+      "AvgCost": 0.12840273444444447,
+      "AvgDuration": 1271783538708
+    },
+    "openrouter/openai/gpt-5.1": {
+      "Model": "openrouter/openai/gpt-5.1",
+      "Runs": 72,
+      "Passed": 10,
+      "Failed": 62,
+      "PassRate": 13.88888888888889,
+      "TotalCost": 31.173705249999994,
+      "AvgCost": 0.43296812847222216,
+      "AvgDuration": 940267946541
+    },
+    "openrouter/openai/gpt-5.1-codex-max": {
+      "Model": "openrouter/openai/gpt-5.1-codex-max",
+      "Runs": 72,
+      "Passed": 8,
+      "Failed": 64,
+      "PassRate": 11.11111111111111,
+      "TotalCost": 58.50640674999999,
+      "AvgCost": 0.8125889826388888,
+      "AvgDuration": 1104829396125
+    },
+    "openrouter/openai/gpt-5.2": {
+      "Model": "openrouter/openai/gpt-5.2",
+      "Runs": 72,
+      "Passed": 18,
+      "Failed": 54,
+      "PassRate": 25,
+      "TotalCost": 49.28771504999997,
+      "AvgCost": 0.6845515979166662,
+      "AvgDuration": 1080797243500
+    },
+    "openrouter/x-ai/grok-4": {
+      "Model": "openrouter/x-ai/grok-4",
+      "Runs": 72,
+      "Passed": 3,
+      "Failed": 69,
+      "PassRate": 4.166666666666666,
+      "TotalCost": 57.056804250000006,
+      "AvgCost": 0.7924556145833335,
+      "AvgDuration": 963433883527
+    },
+    "openrouter/x-ai/grok-4.1-fast": {
+      "Model": "openrouter/x-ai/grok-4.1-fast",
+      "Runs": 72,
+      "Passed": 2,
+      "Failed": 70,
+      "PassRate": 2.7777777777777777,
+      "TotalCost": 9.938388100000003,
+      "AvgCost": 0.1380331680555556,
+      "AvgDuration": 1044203993013
+    },
+    "openrouter/z-ai/glm-4.7": {
+      "Model": "openrouter/z-ai/glm-4.7",
+      "Runs": 72,
+      "Passed": 9,
+      "Failed": 63,
+      "PassRate": 12.5,
+      "TotalCost": 24.070840569999998,
+      "AvgCost": 0.33431723013888887,
+      "AvgDuration": 1113280064055
+    }
+  },
+  "ByTask": {
+    "cpp-otel-advanced": {
+      "Task": "cpp-otel-advanced",
+      "Runs": 39,
+      "Passed": 13,
+      "Failed": 26,
+      "PassRate": 33.33333333333333,
+      "TotalCost": 20.503188592,
+      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
+    },
+    "cpp-otel-distributed-context-propagation": {
+      "Task": "cpp-otel-distributed-context-propagation",
+      "Runs": 39,
+      "Passed": 1,
+      "Failed": 38,
+      "PassRate": 2.564102564102564,
+      "TotalCost": 31.938628095,
+      "BestModel": "openrouter/z-ai/glm-4.7"
+    },
+    "cpp-otel-simple": {
+      "Task": "cpp-otel-simple",
+      "Runs": 39,
+      "Passed": 29,
+      "Failed": 10,
+      "PassRate": 74.35897435897436,
+      "TotalCost": 3.8617912989999996,
+      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+    },
+    "erlang-otel-microservices": {
+      "Task": "erlang-otel-microservices",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 24.094668561000002,
+      "BestModel": "openrouter/openai/gpt-5.1"
+    },
+    "go-otel-distributed-context-propagation": {
+      "Task": "go-otel-distributed-context-propagation",
+      "Runs": 39,
+      "Passed": 1,
+      "Failed": 38,
+      "PassRate": 2.564102564102564,
+      "TotalCost": 19.682964415999994,
+      "BestModel": "openrouter/z-ai/glm-4.7"
+    },
+    "go-otel-grpc-fix": {
+      "Task": "go-otel-grpc-fix",
+      "Runs": 39,
+      "Passed": 18,
+      "Failed": 21,
+      "PassRate": 46.15384615384615,
+      "TotalCost": 21.478166268000003,
+      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+    },
+    "go-otel-log": {
+      "Task": "go-otel-log",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 13.273866781,
+      "BestModel": "openrouter/z-ai/glm-4.7"
+    },
+    "go-otel-microservices": {
+      "Task": "go-otel-microservices",
+      "Runs": 39,
+      "Passed": 4,
+      "Failed": 35,
+      "PassRate": 10.256410256410255,
+      "TotalCost": 17.994979917,
+      "BestModel": "openrouter/openai/gpt-5.2"
+    },
+    "go-otel-microservices-logs": {
+      "Task": "go-otel-microservices-logs",
+      "Runs": 39,
+      "Passed": 10,
+      "Failed": 29,
+      "PassRate": 25.64102564102564,
+      "TotalCost": 17.913634191,
+      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+    },
+    "go-otel-microservices-traces": {
+      "Task": "go-otel-microservices-traces",
+      "Runs": 39,
+      "Passed": 20,
+      "Failed": 19,
+      "PassRate": 51.28205128205128,
+      "TotalCost": 11.685889812,
+      "BestModel": "openrouter/google/gemini-3-pro-preview"
+    },
+    "go-otel-microservices-traces-simple": {
+      "Task": "go-otel-microservices-traces-simple",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 11.422851047000002,
+      "BestModel": "openrouter/openai/gpt-5.1"
+    },
+    "go-otel-workflow-tracing": {
+      "Task": "go-otel-workflow-tracing",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 19.194371002000004,
+      "BestModel": "openrouter/x-ai/grok-4.1-fast"
+    },
+    "java-otel-distributed-context-propagation": {
+      "Task": "java-otel-distributed-context-propagation",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 21.728454801999998,
+      "BestModel": "openrouter/x-ai/grok-4.1-fast"
+    },
+    "java-otel-microservices": {
+      "Task": "java-otel-microservices",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 17.518277047,
+      "BestModel": "openrouter/openai/gpt-5.2"
+    },
+    "js-otel-microservices": {
+      "Task": "js-otel-microservices",
+      "Runs": 39,
+      "Passed": 7,
+      "Failed": 32,
+      "PassRate": 17.94871794871795,
+      "TotalCost": 15.760171819000007,
+      "BestModel": "openrouter/openai/gpt-5.2"
+    },
+    "net-otel-microservices": {
+      "Task": "net-otel-microservices",
+      "Runs": 39,
+      "Passed": 4,
+      "Failed": 35,
+      "PassRate": 10.256410256410255,
+      "TotalCost": 13.040043028,
+      "BestModel": "openrouter/openai/gpt-5.1-codex-max"
+    },
+    "php-otel-distributed-context-propagation": {
+      "Task": "php-otel-distributed-context-propagation",
+      "Runs": 39,
+      "Passed": 4,
+      "Failed": 35,
+      "PassRate": 10.256410256410255,
+      "TotalCost": 37.793741252000004,
+      "BestModel": "openrouter/google/gemini-3-pro-preview"
+    },
+    "php-otel-microservices": {
+      "Task": "php-otel-microservices",
+      "Runs": 39,
+      "Passed": 1,
+      "Failed": 38,
+      "PassRate": 2.564102564102564,
+      "TotalCost": 21.489081372000005,
+      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+    },
+    "python-otel-distributed-context-propagation": {
+      "Task": "python-otel-distributed-context-propagation",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 13.356708870000002,
+      "BestModel": "openrouter/openai/gpt-5.2"
+    },
+    "python-otel-microservices": {
+      "Task": "python-otel-microservices",
+      "Runs": 39,
+      "Passed": 13,
+      "Failed": 26,
+      "PassRate": 33.33333333333333,
+      "TotalCost": 15.864051685,
+      "BestModel": "openrouter/google/gemini-3-flash-preview"
+    },
+    "ruby-otel-microservices": {
+      "Task": "ruby-otel-microservices",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 15.306727197000003,
+      "BestModel": "openrouter/google/gemini-3-flash-preview"
+    },
+    "rust-otel-distributed-context-propagation": {
+      "Task": "rust-otel-distributed-context-propagation",
+      "Runs": 39,
+      "Passed": 1,
+      "Failed": 38,
+      "PassRate": 2.564102564102564,
+      "TotalCost": 30.326191458000007,
+      "BestModel": "openrouter/openai/gpt-5.2"
+    },
+    "rust-otel-microservices": {
+      "Task": "rust-otel-microservices",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 29.044672167,
+      "BestModel": "openrouter/google/gemini-3-flash-preview"
+    },
+    "swift-otel-microservices": {
+      "Task": "swift-otel-microservices",
+      "Runs": 39,
+      "Passed": 0,
+      "Failed": 39,
+      "PassRate": 0,
+      "TotalCost": 37.304445177999995,
+      "BestModel": "openrouter/google/gemini-3-pro-preview"
+    }
+  }
+}

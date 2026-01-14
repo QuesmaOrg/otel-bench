@@ -1,0 +1,9 @@
+{application, gateway, [
+    {description, "Gateway microservice"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {gateway_app, []}},
+    {applications, [kernel, stdlib, cowboy, jsx, hackney]},
+    {env, []},
+    {modules, []}
+]}.

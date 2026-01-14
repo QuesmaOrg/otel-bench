@@ -1,0 +1,9 @@
+{application, order, [
+    {description, "Order microservice"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {order_app, []}},
+    {applications, [kernel, stdlib, cowboy, jsx, hackney]},
+    {env, []},
+    {modules, []}
+]}.

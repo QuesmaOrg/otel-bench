@@ -1,0 +1,9 @@
+{application, stock, [
+    {description, "Stock microservice"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {stock_app, []}},
+    {applications, [kernel, stdlib, cowboy, jsx]},
+    {env, []},
+    {modules, []}
+]}.

@@ -1,0 +1,14 @@
+{
+    "require": {
+        "php": ">=8.2",
+        "slim/slim": "^4.14",
+        "slim/psr7": "^1.7",
+        "php-di/php-di": "^7.0",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gateway\\": "src/"
+        }
+    }
+}
