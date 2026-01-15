@@ -1,9 +1,9 @@
 {
-  "TotalRuns": 936,
-  "TotalPassed": 126,
-  "TotalFailed": 810,
-  "TotalCost": 481.57756585600026,
-  "TotalDuration": 843641873160000,
+  "TotalRuns": 960,
+  "TotalPassed": 130,
+  "TotalFailed": 830,
+  "TotalCost": 496.0188749060001,
+  "TotalDuration": 864817926511000,
   "ByModel": {
     "openrouter/anthropic/claude-haiku-4.5": {
       "Model": "openrouter/anthropic/claude-haiku-4.5",
@@ -11,8 +11,8 @@
       "Passed": 4,
       "Failed": 68,
       "PassRate": 5.555555555555555,
-      "TotalCost": 30.28984985000001,
-      "AvgCost": 0.4206923590277779,
+      "TotalCost": 30.289849850000003,
+      "AvgCost": 0.4206923590277778,
       "AvgDuration": 539206209291
     },
     "openrouter/anthropic/claude-opus-4.5": {
@@ -31,8 +31,8 @@
       "Passed": 15,
       "Failed": 57,
       "PassRate": 20.833333333333336,
-      "TotalCost": 70.52292539999999,
-      "AvgCost": 0.9794850749999999,
+      "TotalCost": 70.52292539999998,
+      "AvgCost": 0.9794850749999997,
       "AvgDuration": 693066507000
     },
     "openrouter/deepseek/deepseek-v3.2": {
@@ -51,8 +51,8 @@
       "Passed": 13,
       "Failed": 59,
       "PassRate": 18.055555555555554,
-      "TotalCost": 7.682379750000002,
-      "AvgCost": 0.10669971875000002,
+      "TotalCost": 7.682379750000001,
+      "AvgCost": 0.10669971875,
       "AvgDuration": 369721716263
     },
     "openrouter/google/gemini-3-pro-preview": {
@@ -71,8 +71,8 @@
       "Passed": 5,
       "Failed": 67,
       "PassRate": 6.944444444444445,
-      "TotalCost": 9.244996880000002,
-      "AvgCost": 0.12840273444444447,
+      "TotalCost": 9.24499688,
+      "AvgCost": 0.12840273444444444,
       "AvgDuration": 1271783538708
     },
     "openrouter/openai/gpt-5.1": {
@@ -101,9 +101,19 @@
       "Passed": 18,
       "Failed": 54,
       "PassRate": 25,
-      "TotalCost": 49.28771504999997,
-      "AvgCost": 0.6845515979166662,
+      "TotalCost": 49.287715049999974,
+      "AvgCost": 0.6845515979166663,
       "AvgDuration": 1080797243500
+    },
+    "openrouter/openai/gpt-5.2-codex": {
+      "Model": "openrouter/openai/gpt-5.2-codex",
+      "Runs": 24,
+      "Passed": 4,
+      "Failed": 20,
+      "PassRate": 16.666666666666664,
+      "TotalCost": 14.441309050000001,
+      "AvgCost": 0.6017212104166667,
+      "AvgDuration": 882335556291
     },
     "openrouter/x-ai/grok-4": {
       "Model": "openrouter/x-ai/grok-4",
@@ -139,219 +149,291 @@
   "ByTask": {
     "cpp-otel-advanced": {
       "Task": "cpp-otel-advanced",
-      "Runs": 39,
-      "Passed": 13,
+      "Runs": 40,
+      "Passed": 14,
       "Failed": 26,
-      "PassRate": 33.33333333333333,
-      "TotalCost": 20.503188592,
-      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
+      "PassRate": 35,
+      "TotalCost": 21.057070942,
+      "HighestPassRateModel": "openrouter/anthropic/claude-sonnet-4.5",
+      "CheapestModel": "openrouter/google/gemini-3-flash-preview",
+      "FastestModel": "openrouter/google/gemini-3-flash-preview",
+      "LeastTurnsModel": "openrouter/openai/gpt-5.2-codex"
     },
-    "cpp-otel-distributed-context-propagation": {
-      "Task": "cpp-otel-distributed-context-propagation",
-      "Runs": 39,
+    "cpp-otel-distributed-context-pro": {
+      "Task": "cpp-otel-distributed-context-pro",
+      "Runs": 40,
       "Passed": 1,
-      "Failed": 38,
-      "PassRate": 2.564102564102564,
-      "TotalCost": 31.938628095,
-      "BestModel": "openrouter/z-ai/glm-4.7"
+      "Failed": 39,
+      "PassRate": 2.5,
+      "TotalCost": 33.037309244999996,
+      "HighestPassRateModel": "openrouter/z-ai/glm-4.7",
+      "CheapestModel": "openrouter/z-ai/glm-4.7",
+      "FastestModel": "openrouter/z-ai/glm-4.7",
+      "LeastTurnsModel": ""
     },
     "cpp-otel-simple": {
       "Task": "cpp-otel-simple",
-      "Runs": 39,
-      "Passed": 29,
+      "Runs": 40,
+      "Passed": 30,
       "Failed": 10,
-      "PassRate": 74.35897435897436,
-      "TotalCost": 3.8617912989999996,
-      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
+      "PassRate": 75,
+      "TotalCost": 3.9611664490000003,
+      "HighestPassRateModel": "openrouter/openai/gpt-5.2-codex",
+      "CheapestModel": "openrouter/google/gemini-3-flash-preview",
+      "FastestModel": "openrouter/google/gemini-3-flash-preview",
+      "LeastTurnsModel": "openrouter/openai/gpt-5.2-codex"
     },
     "erlang-otel-microservices": {
       "Task": "erlang-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 24.094668561000002,
-      "BestModel": "openrouter/anthropic/claude-haiku-4.5"
+      "TotalCost": 24.110540711000002,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
-    "go-otel-distributed-context-propagation": {
-      "Task": "go-otel-distributed-context-propagation",
-      "Runs": 39,
+    "go-otel-distributed-context-prop": {
+      "Task": "go-otel-distributed-context-prop",
+      "Runs": 40,
       "Passed": 1,
-      "Failed": 38,
-      "PassRate": 2.564102564102564,
-      "TotalCost": 19.682964415999994,
-      "BestModel": "openrouter/z-ai/glm-4.7"
+      "Failed": 39,
+      "PassRate": 2.5,
+      "TotalCost": 20.318815016,
+      "HighestPassRateModel": "openrouter/z-ai/glm-4.7",
+      "CheapestModel": "openrouter/z-ai/glm-4.7",
+      "FastestModel": "openrouter/z-ai/glm-4.7",
+      "LeastTurnsModel": ""
     },
     "go-otel-grpc-fix": {
       "Task": "go-otel-grpc-fix",
-      "Runs": 39,
-      "Passed": 18,
+      "Runs": 40,
+      "Passed": 19,
       "Failed": 21,
-      "PassRate": 46.15384615384615,
-      "TotalCost": 21.478166268000003,
-      "BestModel": "openrouter/google/gemini-3-flash-preview"
+      "PassRate": 47.5,
+      "TotalCost": 21.781537868,
+      "HighestPassRateModel": "openrouter/openai/gpt-5.2-codex",
+      "CheapestModel": "openrouter/google/gemini-3-flash-preview",
+      "FastestModel": "openrouter/openai/gpt-5.2-codex",
+      "LeastTurnsModel": "openrouter/openai/gpt-5.2-codex"
     },
     "go-otel-log": {
       "Task": "go-otel-log",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 13.273866781,
-      "BestModel": "openrouter/x-ai/grok-4.1-fast"
+      "TotalCost": 13.839938581,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
     "go-otel-microservices": {
       "Task": "go-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 4,
-      "Failed": 35,
-      "PassRate": 10.256410256410255,
-      "TotalCost": 17.994979917,
-      "BestModel": "openrouter/openai/gpt-5.2"
+      "Failed": 36,
+      "PassRate": 10,
+      "TotalCost": 18.525040217,
+      "HighestPassRateModel": "openrouter/openai/gpt-5.2",
+      "CheapestModel": "openrouter/openai/gpt-5.1",
+      "FastestModel": "openrouter/openai/gpt-5.2",
+      "LeastTurnsModel": ""
     },
     "go-otel-microservices-logs": {
       "Task": "go-otel-microservices-logs",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 10,
-      "Failed": 29,
-      "PassRate": 25.64102564102564,
-      "TotalCost": 17.913634191,
-      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+      "Failed": 30,
+      "PassRate": 25,
+      "TotalCost": 18.297217040999996,
+      "HighestPassRateModel": "openrouter/anthropic/claude-opus-4.5",
+      "CheapestModel": "openrouter/google/gemini-3-flash-preview",
+      "FastestModel": "openrouter/google/gemini-3-flash-preview",
+      "LeastTurnsModel": ""
     },
     "go-otel-microservices-traces": {
       "Task": "go-otel-microservices-traces",
-      "Runs": 39,
-      "Passed": 20,
+      "Runs": 40,
+      "Passed": 21,
       "Failed": 19,
-      "PassRate": 51.28205128205128,
-      "TotalCost": 11.685889812,
-      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+      "PassRate": 52.5,
+      "TotalCost": 12.269087112,
+      "HighestPassRateModel": "openrouter/moonshotai/kimi-k2-thinking",
+      "CheapestModel": "openrouter/x-ai/grok-4.1-fast",
+      "FastestModel": "openrouter/google/gemini-3-pro-preview",
+      "LeastTurnsModel": "openrouter/openai/gpt-5.2-codex"
     },
-    "go-otel-microservices-traces-simple": {
-      "Task": "go-otel-microservices-traces-simple",
-      "Runs": 39,
+    "go-otel-microservices-traces-sim": {
+      "Task": "go-otel-microservices-traces-sim",
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 11.422851047000002,
-      "BestModel": "openrouter/x-ai/grok-4.1-fast"
+      "TotalCost": 11.687175247000003,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
     "go-otel-workflow-tracing": {
       "Task": "go-otel-workflow-tracing",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 19.194371002000004,
-      "BestModel": "openrouter/openai/gpt-5.2"
+      "TotalCost": 19.829498852000004,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
-    "java-otel-distributed-context-propagation": {
-      "Task": "java-otel-distributed-context-propagation",
-      "Runs": 39,
+    "java-otel-distributed-context-pr": {
+      "Task": "java-otel-distributed-context-pr",
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 21.728454801999998,
-      "BestModel": "openrouter/google/gemini-3-flash-preview"
+      "TotalCost": 22.491539852,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
     "java-otel-microservices": {
       "Task": "java-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 17.518277047,
-      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
+      "TotalCost": 18.319286347000002,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
     "js-otel-microservices": {
       "Task": "js-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 7,
-      "Failed": 32,
-      "PassRate": 17.94871794871795,
-      "TotalCost": 15.760171819000007,
-      "BestModel": "openrouter/openai/gpt-5.2"
+      "Failed": 33,
+      "PassRate": 17.5,
+      "TotalCost": 16.215694719000002,
+      "HighestPassRateModel": "openrouter/openai/gpt-5.2",
+      "CheapestModel": "openrouter/z-ai/glm-4.7",
+      "FastestModel": "openrouter/anthropic/claude-opus-4.5",
+      "LeastTurnsModel": ""
     },
     "net-otel-microservices": {
       "Task": "net-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 4,
-      "Failed": 35,
-      "PassRate": 10.256410256410255,
-      "TotalCost": 13.040043028,
-      "BestModel": "openrouter/openai/gpt-5.1"
+      "Failed": 36,
+      "PassRate": 10,
+      "TotalCost": 13.407478977999999,
+      "HighestPassRateModel": "openrouter/deepseek/deepseek-v3.2",
+      "CheapestModel": "openrouter/deepseek/deepseek-v3.2",
+      "FastestModel": "openrouter/openai/gpt-5.1-codex-max",
+      "LeastTurnsModel": ""
     },
-    "php-otel-distributed-context-propagation": {
-      "Task": "php-otel-distributed-context-propagation",
-      "Runs": 39,
+    "php-otel-distributed-context-pro": {
+      "Task": "php-otel-distributed-context-pro",
+      "Runs": 40,
       "Passed": 4,
-      "Failed": 35,
-      "PassRate": 10.256410256410255,
-      "TotalCost": 37.793741252000004,
-      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
+      "Failed": 36,
+      "PassRate": 10,
+      "TotalCost": 39.807262902,
+      "HighestPassRateModel": "openrouter/google/gemini-3-pro-preview",
+      "CheapestModel": "openrouter/google/gemini-3-flash-preview",
+      "FastestModel": "openrouter/google/gemini-3-flash-preview",
+      "LeastTurnsModel": ""
     },
     "php-otel-microservices": {
       "Task": "php-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 1,
-      "Failed": 38,
-      "PassRate": 2.564102564102564,
-      "TotalCost": 21.489081372000005,
-      "BestModel": "openrouter/anthropic/claude-opus-4.5"
-    },
-    "python-otel-distributed-context-propagation": {
-      "Task": "python-otel-distributed-context-propagation",
-      "Runs": 39,
-      "Passed": 0,
       "Failed": 39,
+      "PassRate": 2.5,
+      "TotalCost": 22.140632622000005,
+      "HighestPassRateModel": "openrouter/anthropic/claude-opus-4.5",
+      "CheapestModel": "openrouter/anthropic/claude-opus-4.5",
+      "FastestModel": "openrouter/anthropic/claude-opus-4.5",
+      "LeastTurnsModel": ""
+    },
+    "python-otel-distributed-context-": {
+      "Task": "python-otel-distributed-context-",
+      "Runs": 40,
+      "Passed": 0,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 13.356708870000002,
-      "BestModel": "openrouter/openai/gpt-5.2"
+      "TotalCost": 13.518240520000003,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
     "python-otel-microservices": {
       "Task": "python-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 13,
-      "Failed": 26,
-      "PassRate": 33.33333333333333,
-      "TotalCost": 15.864051685,
-      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+      "Failed": 27,
+      "PassRate": 32.5,
+      "TotalCost": 16.330551285,
+      "HighestPassRateModel": "openrouter/anthropic/claude-opus-4.5",
+      "CheapestModel": "openrouter/google/gemini-3-flash-preview",
+      "FastestModel": "openrouter/google/gemini-3-flash-preview",
+      "LeastTurnsModel": ""
     },
     "ruby-otel-microservices": {
       "Task": "ruby-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 15.306727197000003,
-      "BestModel": "openrouter/deepseek/deepseek-v3.2"
+      "TotalCost": 15.783044647000002,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
-    "rust-otel-distributed-context-propagation": {
-      "Task": "rust-otel-distributed-context-propagation",
-      "Runs": 39,
+    "rust-otel-distributed-context-pr": {
+      "Task": "rust-otel-distributed-context-pr",
+      "Runs": 40,
       "Passed": 1,
-      "Failed": 38,
-      "PassRate": 2.564102564102564,
-      "TotalCost": 30.326191458000007,
-      "BestModel": "openrouter/openai/gpt-5.2"
+      "Failed": 39,
+      "PassRate": 2.5,
+      "TotalCost": 31.033565258000007,
+      "HighestPassRateModel": "openrouter/openai/gpt-5.2",
+      "CheapestModel": "openrouter/openai/gpt-5.2",
+      "FastestModel": "openrouter/openai/gpt-5.2",
+      "LeastTurnsModel": ""
     },
     "rust-otel-microservices": {
       "Task": "rust-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 29.044672167,
-      "BestModel": "openrouter/google/gemini-3-pro-preview"
+      "TotalCost": 29.556216067,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     },
     "swift-otel-microservices": {
       "Task": "swift-otel-microservices",
-      "Runs": 39,
+      "Runs": 40,
       "Passed": 0,
-      "Failed": 39,
+      "Failed": 40,
       "PassRate": 0,
-      "TotalCost": 37.304445177999995,
-      "BestModel": "openrouter/z-ai/glm-4.7"
+      "TotalCost": 38.700964428,
+      "HighestPassRateModel": "",
+      "CheapestModel": "",
+      "FastestModel": "",
+      "LeastTurnsModel": ""
     }
   }
 }
