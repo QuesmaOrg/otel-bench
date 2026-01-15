@@ -2,7 +2,7 @@
 
 This document classifies all 26 OpenTelemetry instrumentation tasks by difficulty level.
 
-> **Note:** There are 27 task directories, but `go-otel-log` is not included in benchmark results because it is incomplete (contains only instruction.md without source code, tests, or configuration).
+> **Note:** There are 27 task directories, but `go-log` is not included in benchmark results because it is incomplete (contains only instruction.md without source code, tests, or configuration).
 
 ## Summary
 
@@ -27,10 +27,10 @@ Simple single-service instrumentation, basic tracing setup.
 
 | Task | Language | Author | Description |
 |------|----------|--------|-------------|
-| cpp-otel-simple | C++ | Przemek Delewski | Instrument a simple app with 3 methods to generate JSON trace output with parent-child span relationships |
-| java-otel-simple | Java | Przemek Delewski | Instrument a simple app with 3 methods to generate JSON trace output with parent-child span relationships |
-| go-otel-http-tracing | Go | Przemek Delewski | Instrument HTTP server and client with W3C context propagation |
-| go-otel-microservices-traces-simple | Go | Rafal Strzalinski | Add basic OTEL tracing to microservices following conventions |
+| cpp-simple | C++ | Przemek Delewski | Instrument a simple app with 3 methods to generate JSON trace output with parent-child span relationships |
+| java-simple | Java | Przemek Delewski | Instrument a simple app with 3 methods to generate JSON trace output with parent-child span relationships |
+| go-http-tracing | Go | Przemek Delewski | Instrument HTTP server and client with W3C context propagation |
+| go-microservices-traces-simple | Go | Rafal Strzalinski | Add basic OTEL tracing to microservices following conventions |
 
 ---
 
@@ -42,33 +42,33 @@ Multiple services, context propagation, moderate complexity, logging + tracing.
 
 | Task | Language | Author | Description |
 |------|----------|--------|-------------|
-| go-otel-distributed-context-propagation | Go | Przemek Delewski | HTTP server/client with distributed tracing and W3C context propagation |
-| java-otel-distributed-context-propagation | Java | Przemek Delewski | HTTP server/client with OTLP export and distributed tracing |
-| php-otel-distributed-context-propagation | PHP | Przemek Delewski | HTTP server/client with OpenTelemetry SDK and context propagation |
-| python-otel-distributed-context-propagation | Python | Przemek Delewski | HTTP server/client with OpenTelemetry SDK and context propagation |
-| rust-otel-distributed-context-propagation | Rust | Przemek Delewski | Actix-web server and Reqwest client with async patterns |
+| go-distributed-context-propagation | Go | Przemek Delewski | HTTP server/client with distributed tracing and W3C context propagation |
+| java-distributed-context-propagation | Java | Przemek Delewski | HTTP server/client with OTLP export and distributed tracing |
+| php-distributed-context-propagation | PHP | Przemek Delewski | HTTP server/client with OpenTelemetry SDK and context propagation |
+| python-distributed-context-propagation | Python | Przemek Delewski | HTTP server/client with OpenTelemetry SDK and context propagation |
+| rust-distributed-context-propagation | Rust | Przemek Delewski | Actix-web server and Reqwest client with async patterns |
 
 ### Microservices Instrumentation
 
 | Task | Language | Author | Description |
 |------|----------|--------|-------------|
-| go-otel-microservices | Go | Rafal Strzalinski | Add OTEL tracing and logging with lifecycle management |
-| go-otel-microservices-logs | Go | Rafal Strzalinski | Add OTEL logging with lifecycle and HTTP field logging |
-| go-otel-microservices-traces | Go | Rafal Strzalinski | Add OTEL tracing with business domain instrumentation |
-| java-otel-microservices | Java | Rafal Strzalinski | Add OTEL tracing and logging to Java microservices |
-| js-otel-microservices | JavaScript | Rafal Strzalinski | Add OTEL tracing and logging to Node.js microservices |
-| net-otel-microservices | .NET/C# | Rafal Strzalinski | Add OTEL tracing and logging to .NET microservices |
-| php-otel-microservices | PHP | Rafal Strzalinski | Add OTEL tracing and logging to PHP microservices |
-| python-otel-microservices | Python | Rafal Strzalinski | Add OTEL tracing and logging to Python microservices |
-| ruby-otel-microservices | Ruby | Rafal Strzalinski | Add OTEL tracing and logging to Ruby microservices |
-| rust-otel-microservices | Rust | Rafal Strzalinski | Add OTEL tracing and logging with async patterns |
-| erlang-otel-microservices | Erlang | Rafal Strzalinski | Add OTEL tracing and logging to Erlang/OTP microservices |
+| go-microservices | Go | Rafal Strzalinski | Add OTEL tracing and logging with lifecycle management |
+| go-microservices-logs | Go | Rafal Strzalinski | Add OTEL logging with lifecycle and HTTP field logging |
+| go-microservices-traces | Go | Rafal Strzalinski | Add OTEL tracing with business domain instrumentation |
+| java-microservices | Java | Rafal Strzalinski | Add OTEL tracing and logging to Java microservices |
+| js-microservices | JavaScript | Rafal Strzalinski | Add OTEL tracing and logging to Node.js microservices |
+| net-microservices | .NET/C# | Rafal Strzalinski | Add OTEL tracing and logging to .NET microservices |
+| php-microservices | PHP | Rafal Strzalinski | Add OTEL tracing and logging to PHP microservices |
+| python-microservices | Python | Rafal Strzalinski | Add OTEL tracing and logging to Python microservices |
+| ruby-microservices | Ruby | Rafal Strzalinski | Add OTEL tracing and logging to Ruby microservices |
+| rust-microservices | Rust | Rafal Strzalinski | Add OTEL tracing and logging with async patterns |
+| erlang-microservices | Erlang | Rafal Strzalinski | Add OTEL tracing and logging to Erlang/OTP microservices |
 
 ### Workflow Tracing
 
 | Task | Language | Author | Description |
 |------|----------|--------|-------------|
-| go-otel-workflow-tracing | Go | Przemek Delewski | HTTP server/client focusing on complete workflow tracing |
+| go-workflow-tracing | Go | Przemek Delewski | HTTP server/client focusing on complete workflow tracing |
 
 ---
 
@@ -78,11 +78,11 @@ Complex distributed systems, advanced features, multi-threading, error handling.
 
 | Task | Language | Author | Description |
 |------|----------|--------|-------------|
-| cpp-otel-advanced | C++ | Przemek Delewski | Multi-threaded web service with async operations, error handling, context propagation across threads, 15-20 spans |
-| java-otel-advanced | Java | Przemek Delewski | Multi-threaded web service with CompletableFuture async, error handling, span links, 15-20 spans |
-| cpp-otel-distributed-context-propagation | C++ | Przemek Delewski | HTTP server/client with cpp-httplib, CMake build, complex SDK integration |
-| go-otel-grpc-fix | Go | Przemek Delewski | Debug and fix failing gRPC test in compile-time instrumentation project |
-| swift-otel-microservices | Swift | Rafal Strzalinski | Add OTEL tracing and logging with async/await patterns (less mature SDK) |
+| cpp-advanced | C++ | Przemek Delewski | Multi-threaded web service with async operations, error handling, context propagation across threads, 15-20 spans |
+| java-advanced | Java | Przemek Delewski | Multi-threaded web service with CompletableFuture async, error handling, span links, 15-20 spans |
+| cpp-distributed-context-propagation | C++ | Przemek Delewski | HTTP server/client with cpp-httplib, CMake build, complex SDK integration |
+| go-grpc-fix | Go | Przemek Delewski | Debug and fix failing gRPC test in compile-time instrumentation project |
+| swift-microservices | Swift | Rafal Strzalinski | Add OTEL tracing and logging with async/await patterns (less mature SDK) |
 
 ---
 
@@ -147,7 +147,7 @@ Tasks were classified by analyzing their characteristics against key differentia
 - Debugging existing code rather than writing new
 - Task names with `advanced` or known difficult languages
 
-> **Note:** The classification is somewhat subjective. For example, `go-otel-http-tracing` could arguably be Medium, but was classified as Easy because it focuses on basic HTTP instrumentation with a mature Go SDK.
+> **Note:** The classification is somewhat subjective. For example, `go-http-tracing` could arguably be Medium, but was classified as Easy because it focuses on basic HTTP instrumentation with a mature Go SDK.
 
 ---
 
@@ -156,8 +156,8 @@ Tasks were classified by analyzing their characteristics against key differentia
 ### By Type
 
 **Single Service Instrumentation:**
-- cpp-otel-simple, java-otel-simple (Easy)
-- cpp-otel-advanced, java-otel-advanced (Hard)
+- cpp-simple, java-simple (Easy)
+- cpp-advanced, java-advanced (Hard)
 
 **Distributed Context Propagation:**
 - go, java, php, python, rust (Medium)
@@ -168,9 +168,9 @@ Tasks were classified by analyzing their characteristics against key differentia
 - swift (Hard)
 
 **Specialized:**
-- go-otel-http-tracing (Easy)
-- go-otel-workflow-tracing (Medium)
-- go-otel-grpc-fix (Hard - debugging)
+- go-http-tracing (Easy)
+- go-workflow-tracing (Medium)
+- go-grpc-fix (Hard - debugging)
 
 ### By Language
 
@@ -191,14 +191,14 @@ Tasks were classified by analyzing their characteristics against key differentia
 ### By Author
 
 **Przemek Delewski (13 tasks):**
-- cpp-otel-simple, cpp-otel-advanced, cpp-otel-distributed-context-propagation
-- java-otel-simple, java-otel-advanced, java-otel-distributed-context-propagation
-- go-otel-distributed-context-propagation, go-otel-workflow-tracing, go-otel-http-tracing, go-otel-grpc-fix
-- php-otel-distributed-context-propagation, python-otel-distributed-context-propagation, rust-otel-distributed-context-propagation
+- cpp-simple, cpp-advanced, cpp-distributed-context-propagation
+- java-simple, java-advanced, java-distributed-context-propagation
+- go-distributed-context-propagation, go-workflow-tracing, go-http-tracing, go-grpc-fix
+- php-distributed-context-propagation, python-distributed-context-propagation, rust-distributed-context-propagation
 
 **Rafal Strzalinski (13 tasks):**
-- go-otel-microservices, go-otel-microservices-logs, go-otel-microservices-traces, go-otel-microservices-traces-simple
-- java-otel-microservices, js-otel-microservices, net-otel-microservices, php-otel-microservices
-- python-otel-microservices, ruby-otel-microservices, rust-otel-microservices, erlang-otel-microservices, swift-otel-microservices
+- go-microservices, go-microservices-logs, go-microservices-traces, go-microservices-traces-simple
+- java-microservices, js-microservices, net-microservices, php-microservices
+- python-microservices, ruby-microservices, rust-microservices, erlang-microservices, swift-microservices
 
-> **Note:** Rafal Strzalinski also created `go-otel-log` which is excluded from benchmark results.
+> **Note:** Rafal Strzalinski also created `go-log` which is excluded from benchmark results.
