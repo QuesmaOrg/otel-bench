@@ -59,7 +59,7 @@ type ParsedResult struct {
 	InputTokens  int
 	OutputTokens int
 	CacheTokens  int
-	Episodes     int
+	Turns        int
 	Duration     time.Duration
 	StartedAt    time.Time
 	FinishedAt   time.Time
@@ -100,7 +100,7 @@ func ParseResultFile(path string) (*ParsedResult, error) {
 		result.OutputTokens = hr.AgentResult.NOutputTokens
 		result.CacheTokens = hr.AgentResult.NCacheTokens
 		result.CostUSD = hr.AgentResult.CostUSD
-		result.Episodes = hr.AgentResult.Metadata.NEpisodes
+		result.Turns = hr.AgentResult.Metadata.NEpisodes
 	}
 
 	// Parse verifier result

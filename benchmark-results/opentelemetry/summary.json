@@ -162,7 +162,7 @@
       "Failed": 10,
       "PassRate": 74.35897435897436,
       "TotalCost": 3.8617912989999996,
-      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
     },
     "erlang-otel-microservices": {
       "Task": "erlang-otel-microservices",
@@ -171,7 +171,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 24.094668561000002,
-      "BestModel": "openrouter/openai/gpt-5.1"
+      "BestModel": "openrouter/anthropic/claude-haiku-4.5"
     },
     "go-otel-distributed-context-propagation": {
       "Task": "go-otel-distributed-context-propagation",
@@ -189,7 +189,7 @@
       "Failed": 21,
       "PassRate": 46.15384615384615,
       "TotalCost": 21.478166268000003,
-      "BestModel": "openrouter/anthropic/claude-opus-4.5"
+      "BestModel": "openrouter/google/gemini-3-flash-preview"
     },
     "go-otel-log": {
       "Task": "go-otel-log",
@@ -198,7 +198,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 13.273866781,
-      "BestModel": "openrouter/z-ai/glm-4.7"
+      "BestModel": "openrouter/x-ai/grok-4.1-fast"
     },
     "go-otel-microservices": {
       "Task": "go-otel-microservices",
@@ -225,7 +225,7 @@
       "Failed": 19,
       "PassRate": 51.28205128205128,
       "TotalCost": 11.685889812,
-      "BestModel": "openrouter/google/gemini-3-pro-preview"
+      "BestModel": "openrouter/anthropic/claude-opus-4.5"
     },
     "go-otel-microservices-traces-simple": {
       "Task": "go-otel-microservices-traces-simple",
@@ -234,7 +234,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 11.422851047000002,
-      "BestModel": "openrouter/openai/gpt-5.1"
+      "BestModel": "openrouter/x-ai/grok-4.1-fast"
     },
     "go-otel-workflow-tracing": {
       "Task": "go-otel-workflow-tracing",
@@ -243,7 +243,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 19.194371002000004,
-      "BestModel": "openrouter/x-ai/grok-4.1-fast"
+      "BestModel": "openrouter/openai/gpt-5.2"
     },
     "java-otel-distributed-context-propagation": {
       "Task": "java-otel-distributed-context-propagation",
@@ -252,7 +252,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 21.728454801999998,
-      "BestModel": "openrouter/x-ai/grok-4.1-fast"
+      "BestModel": "openrouter/google/gemini-3-flash-preview"
     },
     "java-otel-microservices": {
       "Task": "java-otel-microservices",
@@ -261,7 +261,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 17.518277047,
-      "BestModel": "openrouter/openai/gpt-5.2"
+      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
     },
     "js-otel-microservices": {
       "Task": "js-otel-microservices",
@@ -279,7 +279,7 @@
       "Failed": 35,
       "PassRate": 10.256410256410255,
       "TotalCost": 13.040043028,
-      "BestModel": "openrouter/openai/gpt-5.1-codex-max"
+      "BestModel": "openrouter/openai/gpt-5.1"
     },
     "php-otel-distributed-context-propagation": {
       "Task": "php-otel-distributed-context-propagation",
@@ -288,7 +288,7 @@
       "Failed": 35,
       "PassRate": 10.256410256410255,
       "TotalCost": 37.793741252000004,
-      "BestModel": "openrouter/google/gemini-3-pro-preview"
+      "BestModel": "openrouter/anthropic/claude-sonnet-4.5"
     },
     "php-otel-microservices": {
       "Task": "php-otel-microservices",
@@ -315,7 +315,7 @@
       "Failed": 26,
       "PassRate": 33.33333333333333,
       "TotalCost": 15.864051685,
-      "BestModel": "openrouter/google/gemini-3-flash-preview"
+      "BestModel": "openrouter/anthropic/claude-opus-4.5"
     },
     "ruby-otel-microservices": {
       "Task": "ruby-otel-microservices",
@@ -324,7 +324,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 15.306727197000003,
-      "BestModel": "openrouter/google/gemini-3-flash-preview"
+      "BestModel": "openrouter/deepseek/deepseek-v3.2"
     },
     "rust-otel-distributed-context-propagation": {
       "Task": "rust-otel-distributed-context-propagation",
@@ -342,7 +342,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 29.044672167,
-      "BestModel": "openrouter/google/gemini-3-flash-preview"
+      "BestModel": "openrouter/google/gemini-3-pro-preview"
     },
     "swift-otel-microservices": {
       "Task": "swift-otel-microservices",
@@ -351,7 +351,7 @@
       "Failed": 39,
       "PassRate": 0,
       "TotalCost": 37.304445177999995,
-      "BestModel": "openrouter/google/gemini-3-pro-preview"
+      "BestModel": "openrouter/z-ai/glm-4.7"
     }
   }
 }

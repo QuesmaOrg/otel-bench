@@ -24,6 +24,7 @@ type TaskResult struct {
 	InputTokens  int
 	OutputTokens int
 	CacheTokens  int
+	Turns        int
 	Duration     time.Duration
 	StartedAt    time.Time
 	FinishedAt   time.Time
@@ -175,6 +176,7 @@ func (r *Runner) parseJobsResults(jobsDir string, model Model) ([]TaskResult, er
 			InputTokens:  parsed.InputTokens,
 			OutputTokens: parsed.OutputTokens,
 			CacheTokens:  parsed.CacheTokens,
+			Turns:        parsed.Turns,
 			Duration:     parsed.Duration,
 			StartedAt:    parsed.StartedAt,
 			FinishedAt:   parsed.FinishedAt,
