@@ -50,7 +50,7 @@ The OpenTelemetry dataset (`datasets/opentelemetry/`) contains tasks for:
 ## Documentation
 
 - **[Harbor Playground Guide](HARBOR.md)** - How to work with the Harbor framework, run tasks, and use the UI
-- **[Benchmark Runner](tools/harbor-runner/Readme.md)** - Detailed documentation for the benchmark runner tool including configuration, CLI options, and dashboard generation
+- **[Benchmark Runner](tools/harbor-runner/README.md)** - Detailed documentation for the benchmark runner tool including configuration, CLI options, and dashboard generation
 
 ## Output
 
