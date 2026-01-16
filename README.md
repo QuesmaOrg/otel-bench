@@ -25,6 +25,11 @@ The OpenTelemetry dataset (`datasets/otel/`) contains tasks for:
 | Erlang | microservices |
 | Swift | microservices |
 
+## Disclaimer
+
+- Tasks are internet dependent and require internet access to run
+- Task solution instructions are not yet included (work in progress)
+
 ## License
 
 See [LICENSE](LICENSE) for details.
