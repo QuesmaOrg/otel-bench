@@ -1,8 +1,8 @@
 version = "1.0"
 
 [metadata]
-author_name = "OpenTelemetry Team"
-author_email = "otel@opentelemetry.io"
+author_name = "Przemek Delewski"
+author_email = "pdelewski@quesma.com"
 difficulty = "medium"
 category = "programming"
 tags = ["opentelemetry", "c++", "cpp", "instrumentation", "tracing", "distributed-tracing", "context-propagation", "http", "observability", "microservices"]
