@@ -3,7 +3,7 @@
 # See TASK_SUMMARY.md for the full human-readable documentation
 
 tasks:
-  cpp-otel-simple:
+  cpp-simple:
     pass_rate: 74.4
     category: "C++ Tracing"
     difficulty: "Easy"
@@ -19,7 +19,7 @@ tasks:
       - Missing parent-child relationships
     example_error: ""
 
-  cpp-otel-advanced:
+  cpp-advanced:
     pass_rate: 33.3
     category: "C++ Advanced"
     difficulty: "Hard"
@@ -40,7 +40,7 @@ tasks:
       - Incomplete span relationships
     example_error: ""
 
-  cpp-otel-distributed-context-propagation:
+  cpp-distributed-context-propagation:
     pass_rate: 2.6
     category: "C++ Context"
     difficulty: "Hard"
@@ -57,7 +57,7 @@ tasks:
       - CMake build configuration challenges
     example_error: ""
 
-  erlang-otel-microservices:
+  erlang-microservices:
     pass_rate: 0
     category: "Erlang Full"
     difficulty: "Very Hard"
@@ -71,7 +71,7 @@ tasks:
       don't exist in Hex.
     example_error: "===> Package not found in any repo: opentelemetry 1.4.2"
 
-  go-otel-distributed-context-propagation:
+  go-distributed-context-propagation:
     pass_rate: 2.6
     category: "Go Context"
     difficulty: "Hard"
@@ -86,7 +86,7 @@ tasks:
       - Requires understanding of when to create new vs. continue traces
     example_error: ""
 
-  go-otel-grpc-fix:
+  go-grpc-fix:
     pass_rate: 46.2
     category: "Go Bug Fix"
     difficulty: "Medium"
@@ -104,7 +104,7 @@ tasks:
       - Code generation errors
     example_error: ""
 
-  go-otel-log:
+  go-log:
     pass_rate: 0
     category: "Go Logging"
     difficulty: "N/A (Broken)"
@@ -116,7 +116,7 @@ tasks:
       Task/environment is broken and needs fixing.
     example_error: ""
 
-  go-otel-microservices:
+  go-microservices:
     pass_rate: 10.3
     category: "Go Full"
     difficulty: "Hard"
@@ -132,7 +132,7 @@ tasks:
       - Graceful degradation when collector unavailable
     example_error: ""
 
-  go-otel-microservices-logs:
+  go-microservices-logs:
     pass_rate: 25.6
     category: "Go Logging"
     difficulty: "Medium"
@@ -146,7 +146,7 @@ tasks:
     failure_reasons: ""
     example_error: ""
 
-  go-otel-microservices-traces:
+  go-microservices-traces:
     pass_rate: 51.3
     category: "Go Tracing"
     difficulty: "Medium"
@@ -160,7 +160,7 @@ tasks:
     failure_reasons: ""
     example_error: ""
 
-  go-otel-microservices-traces-simple:
+  go-microservices-traces-simple:
     pass_rate: 0
     category: "Go Tracing"
     difficulty: "N/A (Broken)"
@@ -172,7 +172,7 @@ tasks:
       Task/environment is broken and needs fixing.
     example_error: ""
 
-  go-otel-workflow-tracing:
+  go-workflow-tracing:
     pass_rate: 0
     category: "Go Tracing"
     difficulty: "Hard"
@@ -187,7 +187,7 @@ tasks:
       requires minimal, focused instrumentation.
     example_error: "AssertionError: Too many spans: 11 (expected at most 6)"
 
-  java-otel-distributed-context-propagation:
+  java-distributed-context-propagation:
     pass_rate: 0
     category: "Java Context"
     difficulty: "Hard"
@@ -202,7 +202,7 @@ tasks:
       - Models create extra traces for initialization/startup
     example_error: ""
 
-  java-otel-microservices:
+  java-microservices:
     pass_rate: 0
     category: "Java Full"
     difficulty: "Very Hard"
@@ -219,7 +219,7 @@ tasks:
       - Non-existent Spring classes (`ApplicationStoppingEvent`)
     example_error: ""
 
-  js-otel-microservices:
+  js-microservices:
     pass_rate: 17.9
     category: "JavaScript Full"
     difficulty: "Medium"
@@ -236,7 +236,7 @@ tasks:
       - Async context propagation issues
     example_error: ""
 
-  net-otel-microservices:
+  net-microservices:
     pass_rate: 10.3
     category: ".NET Full"
     difficulty: "Hard"
@@ -254,7 +254,7 @@ tasks:
       - Services don't respond to requests
     example_error: ""
 
-  php-otel-distributed-context-propagation:
+  php-distributed-context-propagation:
     pass_rate: 10.3
     category: "PHP Context"
     difficulty: "Hard"
@@ -272,7 +272,7 @@ tasks:
         workflows)
     example_error: "AssertionError: Expected at least 2 trace IDs, got 1"
 
-  php-otel-microservices:
+  php-microservices:
     pass_rate: 2.6
     category: "PHP Full"
     difficulty: "Hard"
@@ -286,7 +286,7 @@ tasks:
       - Less common use case for models
     example_error: ""
 
-  python-otel-distributed-context-propagation:
+  python-distributed-context-propagation:
     pass_rate: 0
     category: "Python Context"
     difficulty: "Hard"
@@ -300,7 +300,7 @@ tasks:
       instead of creating separate traces for each.
     example_error: "AssertionError: Expected more than 1 trace ID, got 1"
 
-  python-otel-microservices:
+  python-microservices:
     pass_rate: 33.3
     category: "Python Full"
     difficulty: "Medium"
@@ -317,7 +317,7 @@ tasks:
       - Async context issues
     example_error: ""
 
-  ruby-otel-microservices:
+  ruby-microservices:
     pass_rate: 0
     category: "Ruby Full"
     difficulty: "Very Hard"
@@ -335,7 +335,7 @@ tasks:
       All code compiled successfully
       Found 0 rows in traces table
 
-  rust-otel-distributed-context-propagation:
+  rust-distributed-context-propagation:
     pass_rate: 2.6
     category: "Rust Context"
     difficulty: "Hard"
@@ -349,7 +349,7 @@ tasks:
       - Cargo dependency management challenges
     example_error: ""
 
-  rust-otel-microservices:
+  rust-microservices:
     pass_rate: 0
     category: "Rust Full"
     difficulty: "N/A (Env Issue)"
@@ -365,7 +365,7 @@ tasks:
       Could not find openssl via pkg-config
       The pkg-config command could not be found.
 
-  swift-otel-microservices:
+  swift-microservices:
     pass_rate: 0
     category: "Swift Full"
     difficulty: "Very Hard"

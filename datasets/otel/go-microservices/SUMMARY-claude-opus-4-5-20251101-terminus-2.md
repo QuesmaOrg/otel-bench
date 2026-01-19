@@ -1,29 +1,32 @@
-Job: jobs/2025-12-17__21-15-01
+Job: jobs/2025-12-17\_\_21-15-01
+
 ## Analysis Summary
 
 I've analyzed all 5 runs from the job directory `jobs/2025-12-17__21-15-01`. Here are my findings:
 
 ### Overall Results
+
 - **Success Rate**: 1/5 (20%)
 - **Model Used**: claude-opus-4-5-20251101 (all runs)
 - **Agent**: terminus-2
-- **Task**: go-otel-microservices (OpenTelemetry instrumentation)
+- **Task**: go-microservices (OpenTelemetry instrumentation)
 
 ### Run-by-Run Breakdown
 
-| Run ID | Status | Tests | Traces | Logs | Cost | Episodes | Key Issue |
-|--------|--------|-------|--------|------|------|----------|-----------|
-| **mbxPziE** | ✅ PASS | 7/7 | 13 | 21 | $1.60 | 39 | None - fully working |
-| uYS2W7E | ❌ FAIL | 6/7 | 10 | 0 | $1.32 | 36 | No logs sent to OTEL |
-| nsXB5aJ | ❌ FAIL | 6/7 | 10 | 0 | $1.19 | 37 | No logs sent to OTEL |
-| qNzDwLs | ❌ FAIL | 6/7 | 9 | 0 | $2.18 | 53 | No logs sent to OTEL |
-| u34KdhE | ❌ FAIL | 2/7 | 0 | 0 | $0.89 | 24 | Schema conflict error |
+| Run ID      | Status  | Tests | Traces | Logs | Cost  | Episodes | Key Issue             |
+| ----------- | ------- | ----- | ------ | ---- | ----- | -------- | --------------------- |
+| **mbxPziE** | ✅ PASS | 7/7   | 13     | 21   | $1.60 | 39       | None - fully working  |
+| uYS2W7E     | ❌ FAIL | 6/7   | 10     | 0    | $1.32 | 36       | No logs sent to OTEL  |
+| nsXB5aJ     | ❌ FAIL | 6/7   | 10     | 0    | $1.19 | 37       | No logs sent to OTEL  |
+| qNzDwLs     | ❌ FAIL | 6/7   | 9      | 0    | $2.18 | 53       | No logs sent to OTEL  |
+| u34KdhE     | ❌ FAIL | 2/7   | 0      | 0    | $0.89 | 24       | Schema conflict error |
 
 ### Test Failures Analysis
 
 **Failed Run Types:**
 
 1. **Type 1: Missing Logs (3 runs: uYS2W7E, nsXB5aJ, qNzDwLs)**
+
    - ✅ Traces work correctly (9-10 traces captured)
    - ✅ Single trace ID propagation works
    - ✅ All 3 services detected
@@ -36,8 +39,8 @@ I've analyzed all 5 runs from the job directory `jobs/2025-12-17__21-15-01`. Her
    - ❌ No logs (0 in database)
    - ❌ Services crash at startup with error:
      ```
-     failed to setup telemetry error="failed to create resource: 
-     conflicting Schema URL: https://opentelemetry.io/schemas/1.37.0 
+     failed to setup telemetry error="failed to create resource:
+     conflicting Schema URL: https://opentelemetry.io/schemas/1.37.0
      and https://opentelemetry.io/schemas/1.26.0"
      ```
    - This is caused by mixing `resource.Default()` with explicit schema URL
@@ -45,6 +48,7 @@ I've analyzed all 5 runs from the job directory `jobs/2025-12-17__21-15-01`. Her
 ### Code Differences
 
 **Successful Run (mbxPziE):**
+
 - Uses `microservices/telemetry` package structure
 - Custom `OTELHandler` that bridges slog to OTEL logs
 - Explicit resource creation with `semconv v1.26.0`
@@ -52,6 +56,7 @@ I've analyzed all 5 runs from the job directory `jobs/2025-12-17__21-15-01`. Her
 - Both traces AND logs are properly exported
 
 **Failed Runs - Missing Logs (uYS2W7E, nsXB5aJ, qNzDwLs):**
+
 - Uses `microservices/pkg/telemetry` package
 - Standard JSON logger: `slog.New(slog.NewJSONHandler(os.Stdout, ...))`
 - **Critical Issue**: Logs go to stdout only, NOT to OTEL collector
@@ -59,6 +64,7 @@ I've analyzed all 5 runs from the job directory `jobs/2025-12-17__21-15-01`. Her
 - Traces work because HTTP instrumentation and manual spans work independently
 
 **Failed Run - Schema Conflict (u34KdhE):**
+
 - Uses `microservices/pkg/otel` package
 - Attempts to merge `resource.Default()` with explicit schema:
   ```go
@@ -76,6 +82,7 @@ I've analyzed all 5 runs from the job directory `jobs/2025-12-17__21-15-01`. Her
 ### Database Contents
 
 Based on test outputs:
+
 - **Successful run**: 13 traces, 21 logs, 3 services identified
 - **Partial failures**: 9-10 traces, 0 logs, 3 services identified
 - **Complete failure**: 0 traces, 0 logs, 0 services

@@ -147,8 +147,8 @@
     }
   },
   "ByTask": {
-    "cpp-otel-advanced": {
-      "Task": "cpp-otel-advanced",
+    "cpp-advanced": {
+      "Task": "cpp-advanced",
       "Runs": 42,
       "Passed": 14,
       "Failed": 28,
@@ -159,8 +159,8 @@
       "FastestModel": "openrouter/google/gemini-3-flash-preview",
       "LeastTurnsModel": "openrouter/google/gemini-3-flash-preview"
     },
-    "cpp-otel-distributed-context-pro": {
-      "Task": "cpp-otel-distributed-context-pro",
+    "cpp-distributed-context-pro": {
+      "Task": "cpp-distributed-context-pro",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -171,8 +171,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "cpp-otel-distributed-context-propagation": {
-      "Task": "cpp-otel-distributed-context-propagation",
+    "cpp-distributed-context-propagation": {
+      "Task": "cpp-distributed-context-propagation",
       "Runs": 39,
       "Passed": 1,
       "Failed": 38,
@@ -183,8 +183,8 @@
       "FastestModel": "openrouter/z-ai/glm-4.7",
       "LeastTurnsModel": "openrouter/z-ai/glm-4.7"
     },
-    "cpp-otel-simple": {
-      "Task": "cpp-otel-simple",
+    "cpp-simple": {
+      "Task": "cpp-simple",
       "Runs": 42,
       "Passed": 32,
       "Failed": 10,
@@ -195,8 +195,8 @@
       "FastestModel": "openrouter/google/gemini-3-flash-preview",
       "LeastTurnsModel": "openrouter/openai/gpt-5.2"
     },
-    "erlang-otel-microservices": {
-      "Task": "erlang-otel-microservices",
+    "erlang-microservices": {
+      "Task": "erlang-microservices",
       "Runs": 42,
       "Passed": 0,
       "Failed": 42,
@@ -207,8 +207,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "go-otel-distributed-context-prop": {
-      "Task": "go-otel-distributed-context-prop",
+    "go-distributed-context-prop": {
+      "Task": "go-distributed-context-prop",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -219,8 +219,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "go-otel-distributed-context-propagation": {
-      "Task": "go-otel-distributed-context-propagation",
+    "go-distributed-context-propagation": {
+      "Task": "go-distributed-context-propagation",
       "Runs": 39,
       "Passed": 1,
       "Failed": 38,
@@ -231,8 +231,8 @@
       "FastestModel": "openrouter/z-ai/glm-4.7",
       "LeastTurnsModel": "openrouter/z-ai/glm-4.7"
     },
-    "go-otel-grpc-fix": {
-      "Task": "go-otel-grpc-fix",
+    "go-grpc-fix": {
+      "Task": "go-grpc-fix",
       "Runs": 42,
       "Passed": 21,
       "Failed": 21,
@@ -243,8 +243,8 @@
       "FastestModel": "openrouter/google/gemini-3-flash-preview",
       "LeastTurnsModel": "openrouter/google/gemini-3-flash-preview"
     },
-    "go-otel-http-tracing": {
-      "Task": "go-otel-http-tracing",
+    "go-http-tracing": {
+      "Task": "go-http-tracing",
       "Runs": 3,
       "Passed": 1,
       "Failed": 2,
@@ -255,8 +255,8 @@
       "FastestModel": "openrouter/openai/gpt-5.2-codex",
       "LeastTurnsModel": "openrouter/openai/gpt-5.2-codex"
     },
-    "go-otel-log": {
-      "Task": "go-otel-log",
+    "go-log": {
+      "Task": "go-log",
       "Runs": 39,
       "Passed": 0,
       "Failed": 39,
@@ -267,8 +267,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "go-otel-microservices": {
-      "Task": "go-otel-microservices",
+    "go-microservices": {
+      "Task": "go-microservices",
       "Runs": 42,
       "Passed": 4,
       "Failed": 38,
@@ -279,8 +279,8 @@
       "FastestModel": "openrouter/openai/gpt-5.2",
       "LeastTurnsModel": "openrouter/openai/gpt-5.1"
     },
-    "go-otel-microservices-logs": {
-      "Task": "go-otel-microservices-logs",
+    "go-microservices-logs": {
+      "Task": "go-microservices-logs",
       "Runs": 42,
       "Passed": 11,
       "Failed": 31,
@@ -291,8 +291,8 @@
       "FastestModel": "openrouter/google/gemini-3-flash-preview",
       "LeastTurnsModel": "openrouter/openai/gpt-5.2"
     },
-    "go-otel-microservices-traces": {
-      "Task": "go-otel-microservices-traces",
+    "go-microservices-traces": {
+      "Task": "go-microservices-traces",
       "Runs": 42,
       "Passed": 23,
       "Failed": 19,
@@ -303,8 +303,8 @@
       "FastestModel": "openrouter/google/gemini-3-pro-preview",
       "LeastTurnsModel": "openrouter/openai/gpt-5.1"
     },
-    "go-otel-microservices-traces-sim": {
-      "Task": "go-otel-microservices-traces-sim",
+    "go-microservices-traces-sim": {
+      "Task": "go-microservices-traces-sim",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -315,8 +315,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "go-otel-microservices-traces-simple": {
-      "Task": "go-otel-microservices-traces-simple",
+    "go-microservices-traces-simple": {
+      "Task": "go-microservices-traces-simple",
       "Runs": 39,
       "Passed": 0,
       "Failed": 39,
@@ -327,8 +327,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "go-otel-workflow-tracing": {
-      "Task": "go-otel-workflow-tracing",
+    "go-workflow-tracing": {
+      "Task": "go-workflow-tracing",
       "Runs": 42,
       "Passed": 0,
       "Failed": 42,
@@ -339,8 +339,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "java-otel-advanced": {
-      "Task": "java-otel-advanced",
+    "java-advanced": {
+      "Task": "java-advanced",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -351,8 +351,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "java-otel-distributed-context-pr": {
-      "Task": "java-otel-distributed-context-pr",
+    "java-distributed-context-pr": {
+      "Task": "java-distributed-context-pr",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -363,8 +363,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "java-otel-distributed-context-propagation": {
-      "Task": "java-otel-distributed-context-propagation",
+    "java-distributed-context-propagation": {
+      "Task": "java-distributed-context-propagation",
       "Runs": 39,
       "Passed": 0,
       "Failed": 39,
@@ -375,8 +375,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "java-otel-microservices": {
-      "Task": "java-otel-microservices",
+    "java-microservices": {
+      "Task": "java-microservices",
       "Runs": 42,
       "Passed": 0,
       "Failed": 42,
@@ -387,8 +387,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "java-otel-simple": {
-      "Task": "java-otel-simple",
+    "java-simple": {
+      "Task": "java-simple",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -399,8 +399,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "js-otel-microservices": {
-      "Task": "js-otel-microservices",
+    "js-microservices": {
+      "Task": "js-microservices",
       "Runs": 42,
       "Passed": 7,
       "Failed": 35,
@@ -411,8 +411,8 @@
       "FastestModel": "openrouter/anthropic/claude-opus-4.5",
       "LeastTurnsModel": "openrouter/openai/gpt-5.2"
     },
-    "net-otel-microservices": {
-      "Task": "net-otel-microservices",
+    "net-microservices": {
+      "Task": "net-microservices",
       "Runs": 42,
       "Passed": 4,
       "Failed": 38,
@@ -423,8 +423,8 @@
       "FastestModel": "openrouter/openai/gpt-5.1-codex-max",
       "LeastTurnsModel": "openrouter/z-ai/glm-4.7"
     },
-    "php-otel-distributed-context-pro": {
-      "Task": "php-otel-distributed-context-pro",
+    "php-distributed-context-pro": {
+      "Task": "php-distributed-context-pro",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -435,8 +435,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "php-otel-distributed-context-propagation": {
-      "Task": "php-otel-distributed-context-propagation",
+    "php-distributed-context-propagation": {
+      "Task": "php-distributed-context-propagation",
       "Runs": 39,
       "Passed": 4,
       "Failed": 35,
@@ -447,8 +447,8 @@
       "FastestModel": "openrouter/google/gemini-3-flash-preview",
       "LeastTurnsModel": "openrouter/moonshotai/kimi-k2-thinking"
     },
-    "php-otel-microservices": {
-      "Task": "php-otel-microservices",
+    "php-microservices": {
+      "Task": "php-microservices",
       "Runs": 42,
       "Passed": 1,
       "Failed": 41,
@@ -459,8 +459,8 @@
       "FastestModel": "openrouter/anthropic/claude-opus-4.5",
       "LeastTurnsModel": "openrouter/anthropic/claude-opus-4.5"
     },
-    "python-otel-distributed-context-": {
-      "Task": "python-otel-distributed-context-",
+    "python-distributed-context-": {
+      "Task": "python-distributed-context-",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -471,8 +471,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "python-otel-distributed-context-propagation": {
-      "Task": "python-otel-distributed-context-propagation",
+    "python-distributed-context-propagation": {
+      "Task": "python-distributed-context-propagation",
       "Runs": 39,
       "Passed": 0,
       "Failed": 39,
@@ -483,8 +483,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "python-otel-microservices": {
-      "Task": "python-otel-microservices",
+    "python-microservices": {
+      "Task": "python-microservices",
       "Runs": 42,
       "Passed": 13,
       "Failed": 29,
@@ -495,8 +495,8 @@
       "FastestModel": "openrouter/google/gemini-3-flash-preview",
       "LeastTurnsModel": "openrouter/openai/gpt-5.2"
     },
-    "ruby-otel-microservices": {
-      "Task": "ruby-otel-microservices",
+    "ruby-microservices": {
+      "Task": "ruby-microservices",
       "Runs": 42,
       "Passed": 0,
       "Failed": 42,
@@ -507,8 +507,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "rust-otel-distributed-context-pr": {
-      "Task": "rust-otel-distributed-context-pr",
+    "rust-distributed-context-pr": {
+      "Task": "rust-distributed-context-pr",
       "Runs": 3,
       "Passed": 0,
       "Failed": 3,
@@ -519,8 +519,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "rust-otel-distributed-context-propagation": {
-      "Task": "rust-otel-distributed-context-propagation",
+    "rust-distributed-context-propagation": {
+      "Task": "rust-distributed-context-propagation",
       "Runs": 39,
       "Passed": 1,
       "Failed": 38,
@@ -531,8 +531,8 @@
       "FastestModel": "openrouter/openai/gpt-5.2",
       "LeastTurnsModel": "openrouter/openai/gpt-5.2"
     },
-    "rust-otel-microservices": {
-      "Task": "rust-otel-microservices",
+    "rust-microservices": {
+      "Task": "rust-microservices",
       "Runs": 42,
       "Passed": 0,
       "Failed": 42,
@@ -543,8 +543,8 @@
       "FastestModel": "",
       "LeastTurnsModel": ""
     },
-    "swift-otel-microservices": {
-      "Task": "swift-otel-microservices",
+    "swift-microservices": {
+      "Task": "swift-microservices",
       "Runs": 42,
       "Passed": 0,
       "Failed": 42,
