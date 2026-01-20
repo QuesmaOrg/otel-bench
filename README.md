@@ -1,6 +1,9 @@
-# OpenTelemetry Benchmark (OTelBench)
+# OpenTelemetry Benchmark (OTelBench) by Quesma
 
 A benchmark suite for evaluating AI models on OpenTelemetry instrumentation tasks across multiple programming languages. Built on the [Harbor framework](https://harborframework.com).
+
+* Benchmark: [OTelBench results](https://quesma.com/benchmarks/otel/)
+* Blog post: [Benchmarking OpenTelemetry: Can AI trace your failed login?](https://quesma.com/blog/introducing-otel-bench/)
 
 ## Overview
 
