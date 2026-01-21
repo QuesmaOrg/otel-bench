@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+# Update pom.xml with OpenTelemetry dependencies
 cat > /workdir/pom.xml << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -111,6 +112,7 @@ cat > /workdir/pom.xml << 'EOF'
 </project>
 EOF
 
+# Create instrumented Server.java with context extraction and server spans
 cat > /workdir/src/main/java/com/example/Server.java << 'EOF'
 package com.example;
 
@@ -389,6 +391,7 @@ public class Server {
 }
 EOF
 
+# Create instrumented Client.java with context injection and client spans
 cat > /workdir/src/main/java/com/example/Client.java << 'EOF'
 package com.example;
 
@@ -592,6 +595,7 @@ public class Client {
 }
 EOF
 
+# Create collector configuration
 cat > /workdir/collector-config.yaml << 'EOF'
 receivers:
   otlp:
@@ -618,22 +622,39 @@ service:
       exporters: [file, debug]
 EOF
 
+# Build the Maven project
 mvn clean package -q
 
-cd /tmp && wget -q https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.91.0/otelcol-contrib_0.91.0_linux_amd64.tar.gz && tar xzf otelcol-contrib_0.91.0_linux_amd64.tar.gz && chmod +x otelcol-contrib && mv otelcol-contrib /usr/local/bin/ && cd /workdir
+# Download and install OpenTelemetry Collector
+cd /tmp
+wget -q https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.91.0/otelcol-contrib_0.91.0_linux_amd64.tar.gz
+tar xzf otelcol-contrib_0.91.0_linux_amd64.tar.gz
+chmod +x otelcol-contrib
+mv otelcol-contrib /usr/local/bin/
+cd /workdir
 
+# Start OpenTelemetry Collector
 otelcol-contrib --config=/workdir/collector-config.yaml > /workdir/collector_output.txt 2>&1 &
+COLLECTOR_PID=$!
 
+# Start the server
 java -cp target/distributed-tracing-1.0-SNAPSHOT-server.jar:target/lib/* com.example.Server > /workdir/server_output.txt 2>&1 &
+SERVER_PID=$!
 
+# Wait for server to be ready
 sleep 3
 
+# Run the client
 java -cp target/distributed-tracing-1.0-SNAPSHOT-client.jar:target/lib/* com.example.Client
 
+# Wait for traces to flush
 sleep 5
 
-kill -9 884 845 2>/dev/null || true
+# Stop all processes
+kill -9 $SERVER_PID $COLLECTOR_PID 2>/dev/null || true
+sleep 2
 
+# Create ASCII trace diagram
 cat > /workdir/traces.txt << 'EOF'
 OpenTelemetry Distributed Tracing - ASCII Diagram
 ==============================================
@@ -763,20 +784,3 @@ Key Features Demonstrated:
 - Custom attributes for business context (tokens, queries)
 - Two separate trace trees (not mixed)
 EOF
-
-echo "=== FINAL VERIFICATION ==="
-echo ""
-echo "Source Files:"
-ls -lh /workdir/src/main/java/com/example/*.java
-echo ""
-echo "Build Configuration:"
-ls -lh /workdir/pom.xml
-echo ""
-echo "Output Files:"
-ls -lh /workdir/traces.json /workdir/traces.txt /workdir/collector_output.txt
-echo ""
-echo "=== TRACE SUMMARY ==="
-grep -o '"traceId":"[^"]*"' /workdir/traces.json | sort -u | wc -l | xargs -I {} echo "Number of unique traces: {}"
-grep -o '"spanId":"[^"]*"' /workdir/traces.json | wc -l | xargs -I {} echo "Total spans: {}"
-echo ""
-echo "=== TASK COMPLETE ==="

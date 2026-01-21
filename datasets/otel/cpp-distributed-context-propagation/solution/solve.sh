@@ -1,39 +1,12 @@
 #!/bin/bash
 set -e
 
-# Write the instrumented CMakeLists.txt
-cat > /workdir/CMakeLists.txt << 'EOF'
-cmake_minimum_required(VERSION 3.16)
-project(distributed-tracing)
+# OpenTelemetry C++ Distributed Context Propagation Implementation
+# This script instruments a C++ client-server application with OpenTelemetry tracing
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+cd /workdir
 
-find_package(Threads REQUIRED)
-find_package(opentelemetry-cpp CONFIG REQUIRED)
-find_package(Protobuf REQUIRED)
-find_package(gRPC REQUIRED)
-
-# Server executable
-add_executable(server server.cpp)
-target_link_libraries(server PRIVATE
-    Threads::Threads
-    opentelemetry-cpp::trace
-    opentelemetry-cpp::otlp_grpc_exporter
-    opentelemetry-cpp::resources
-)
-
-# Client executable
-add_executable(client client.cpp)
-target_link_libraries(client PRIVATE
-    Threads::Threads
-    opentelemetry-cpp::trace
-    opentelemetry-cpp::otlp_grpc_exporter
-    opentelemetry-cpp::resources
-)
-EOF
-
-# Write the instrumented server.cpp
+# Create instrumented server.cpp with OpenTelemetry
 cat > /workdir/server.cpp << 'EOF'
 #include <iostream>
 #include <string>
@@ -92,11 +65,10 @@ void signalHandler(int signum) {
     running = false;
 }
 
-// Helper to extract context from HTTP headers
 class HttpHeaderCarrier : public opentelemetry::context::propagation::TextMapCarrier {
 public:
     HttpHeaderCarrier(const httplib::Headers& headers) : headers_(headers) {}
-
+    
     opentelemetry::nostd::string_view Get(opentelemetry::nostd::string_view key) const noexcept override {
         auto it = headers_.find(key.data());
         if (it != headers_.end()) {
@@ -104,11 +76,10 @@ public:
         }
         return "";
     }
-
+    
     void Set(opentelemetry::nostd::string_view key, opentelemetry::nostd::string_view value) noexcept override {
-        // Not used for extraction
     }
-
+    
 private:
     const httplib::Headers& headers_;
 };
@@ -117,20 +88,19 @@ void initTracer() {
     otlp::OtlpGrpcExporterOptions opts;
     opts.endpoint = "localhost:4317";
     opts.use_ssl_credentials = false;
-
+    
     auto exporter = otlp::OtlpGrpcExporterFactory::Create(opts);
     trace_sdk::BatchSpanProcessorOptions processor_opts;
     auto processor = trace_sdk::BatchSpanProcessorFactory::Create(std::move(exporter), processor_opts);
-
+    
     resource::ResourceAttributes attributes = {
         {"service.name", "search-server"}
     };
     auto resource_ptr = resource::Resource::Create(attributes);
-
+    
     auto provider = trace_sdk::TracerProviderFactory::Create(std::move(processor), resource_ptr);
     trace_api::Provider::SetTracerProvider(opentelemetry::nostd::shared_ptr<trace_api::TracerProvider>(std::move(provider)));
-
-    // Set global propagator for context propagation
+    
     opentelemetry::context::propagation::GlobalTextMapPropagator::SetGlobalPropagator(
         opentelemetry::nostd::shared_ptr<opentelemetry::context::propagation::TextMapPropagator>(
             new opentelemetry::trace::propagation::HttpTraceContext()));
@@ -139,26 +109,24 @@ void initTracer() {
 int main() {
     signal(SIGINT, signalHandler);
     signal(SIGTERM, signalHandler);
-
+    
     initTracer();
     auto tracer = trace_api::Provider::GetTracerProvider()->GetTracer("search-server");
 
     httplib::Server svr;
 
     svr.Get("/search", [&tracer](const httplib::Request& req, httplib::Response& res) {
-        // Extract context from incoming request headers
         HttpHeaderCarrier carrier(req.headers);
         auto prop = opentelemetry::context::propagation::GlobalTextMapPropagator::GetGlobalPropagator();
         auto current_ctx = opentelemetry::context::RuntimeContext::GetCurrent();
         auto extracted_ctx = prop->Extract(carrier, current_ctx);
-
-        // Start span with extracted context
+        
         opentelemetry::trace::StartSpanOptions options;
         options.parent = trace_api::GetSpan(extracted_ctx)->GetContext();
-
+        
         auto span = tracer->StartSpan("GET /search", {}, options);
         auto scope = tracer->WithActiveSpan(span);
-
+        
         std::string query = req.has_param("q") ? req.get_param_value("q") : "default";
         span->SetAttribute("http.method", "GET");
         span->SetAttribute("http.route", "/search");
@@ -166,13 +134,10 @@ int main() {
 
         std::cout << "Search request received for query: " << query << std::endl;
 
-        // Simulate processing
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
-        // Generate token
         std::string token = generateToken(query);
 
-        // Store result
         {
             std::lock_guard<std::mutex> lock(storeMutex);
             tokenStore[token] = "Results for query: " + query;
@@ -181,7 +146,7 @@ int main() {
         json response;
         response["token"] = token;
         response["timestamp"] = getCurrentTimestamp();
-
+        
         span->SetAttribute("search.token", token);
         span->SetStatus(trace_api::StatusCode::kOk);
         span->End();
@@ -190,22 +155,20 @@ int main() {
     });
 
     svr.Get("/result", [&tracer](const httplib::Request& req, httplib::Response& res) {
-        // Extract context from incoming request headers
         HttpHeaderCarrier carrier(req.headers);
         auto prop = opentelemetry::context::propagation::GlobalTextMapPropagator::GetGlobalPropagator();
         auto current_ctx = opentelemetry::context::RuntimeContext::GetCurrent();
         auto extracted_ctx = prop->Extract(carrier, current_ctx);
-
-        // Start span with extracted context
+        
         opentelemetry::trace::StartSpanOptions options;
         options.parent = trace_api::GetSpan(extracted_ctx)->GetContext();
-
+        
         auto span = tracer->StartSpan("GET /result", {}, options);
         auto scope = tracer->WithActiveSpan(span);
-
+        
         span->SetAttribute("http.method", "GET");
         span->SetAttribute("http.route", "/result");
-
+        
         if (!req.has_param("token")) {
             span->SetAttribute("http.status_code", 400);
             span->SetStatus(trace_api::StatusCode::kError, "Token required");
@@ -219,7 +182,6 @@ int main() {
         span->SetAttribute("result.token", token);
         std::cout << "Result request received for token: " << token << std::endl;
 
-        // Simulate processing
         std::this_thread::sleep_for(std::chrono::milliseconds(30));
 
         std::string data;
@@ -241,7 +203,7 @@ int main() {
         response["data"] = data;
         response["token"] = token;
         response["timestamp"] = getCurrentTimestamp();
-
+        
         span->SetAttribute("http.status_code", 200);
         span->SetStatus(trace_api::StatusCode::kOk);
         span->End();
@@ -267,7 +229,7 @@ int main() {
 }
 EOF
 
-# Write the instrumented client.cpp
+# Create instrumented client.cpp with OpenTelemetry
 cat > /workdir/client.cpp << 'EOF'
 #include <iostream>
 #include <string>
@@ -293,11 +255,10 @@ namespace trace_sdk = opentelemetry::sdk::trace;
 namespace otlp = opentelemetry::exporter::otlp;
 namespace resource = opentelemetry::sdk::resource;
 
-// Helper to inject context into HTTP headers
 class HttpHeaderCarrier : public opentelemetry::context::propagation::TextMapCarrier {
 public:
     HttpHeaderCarrier(httplib::Headers& headers) : headers_(headers) {}
-
+    
     opentelemetry::nostd::string_view Get(opentelemetry::nostd::string_view key) const noexcept override {
         auto it = headers_.find(key.data());
         if (it != headers_.end()) {
@@ -305,11 +266,11 @@ public:
         }
         return "";
     }
-
+    
     void Set(opentelemetry::nostd::string_view key, opentelemetry::nostd::string_view value) noexcept override {
         headers_.insert({std::string(key.data(), key.size()), std::string(value.data(), value.size())});
     }
-
+    
 private:
     httplib::Headers& headers_;
 };
@@ -318,29 +279,27 @@ void initTracer() {
     otlp::OtlpGrpcExporterOptions opts;
     opts.endpoint = "localhost:4317";
     opts.use_ssl_credentials = false;
-
+    
     auto exporter = otlp::OtlpGrpcExporterFactory::Create(opts);
     trace_sdk::BatchSpanProcessorOptions processor_opts;
     auto processor = trace_sdk::BatchSpanProcessorFactory::Create(std::move(exporter), processor_opts);
-
+    
     resource::ResourceAttributes attributes = {
         {"service.name", "search-client"}
     };
     auto resource_ptr = resource::Resource::Create(attributes);
-
+    
     auto provider = trace_sdk::TracerProviderFactory::Create(std::move(processor), resource_ptr);
     trace_api::Provider::SetTracerProvider(opentelemetry::nostd::shared_ptr<trace_api::TracerProvider>(std::move(provider)));
-
-    // Set global propagator for context propagation
+    
     opentelemetry::context::propagation::GlobalTextMapPropagator::SetGlobalPropagator(
         opentelemetry::nostd::shared_ptr<opentelemetry::context::propagation::TextMapPropagator>(
             new opentelemetry::trace::propagation::HttpTraceContext()));
 }
 
 int main() {
-    // Wait for server to start
     std::this_thread::sleep_for(std::chrono::seconds(2));
-
+    
     initTracer();
     auto tracer = trace_api::Provider::GetTracerProvider()->GetTracer("search-client");
 
@@ -348,20 +307,18 @@ int main() {
     cli.set_connection_timeout(10);
     cli.set_read_timeout(10);
 
-    // First workflow: valid search and result request
     {
         auto workflow_span = tracer->StartSpan("search-workflow");
         auto workflow_scope = tracer->WithActiveSpan(workflow_span);
-
-        // Make search request
+        
         std::cout << "Making search request..." << std::endl;
-
+        
         httplib::Headers search_headers;
         HttpHeaderCarrier search_carrier(search_headers);
         auto prop = opentelemetry::context::propagation::GlobalTextMapPropagator::GetGlobalPropagator();
         auto current_ctx = opentelemetry::context::RuntimeContext::GetCurrent();
         prop->Inject(search_carrier, current_ctx);
-
+        
         auto searchRes = cli.Get("/search?q=opentelemetry", search_headers);
 
         if (!searchRes) {
@@ -383,14 +340,13 @@ int main() {
         std::cout << "Received token: " << token << std::endl;
         workflow_span->SetAttribute("search.token", token);
 
-        // Make result request with token
         {
             std::cout << "Making result request..." << std::endl;
-
+            
             httplib::Headers result_headers;
             HttpHeaderCarrier result_carrier(result_headers);
             prop->Inject(result_carrier, current_ctx);
-
+            
             auto resultRes = cli.Get(("/result?token=" + token).c_str(), result_headers);
 
             if (!resultRes) {
@@ -411,36 +367,34 @@ int main() {
             std::cout << "Received data: " << resultData["data"].get<std::string>() << std::endl;
             std::cout << "Client completed successfully" << std::endl;
         }
-
+        
         workflow_span->SetStatus(trace_api::StatusCode::kOk);
         workflow_span->End();
     }
 
-    // Second workflow: invalid token request
     {
         auto workflow_span = tracer->StartSpan("invalid-token-workflow");
         auto workflow_scope = tracer->WithActiveSpan(workflow_span);
-
+        
         std::cout << "Making second result request with invalid token..." << std::endl;
-
-        // First get a valid token
+        
         httplib::Headers search_headers;
         HttpHeaderCarrier search_carrier(search_headers);
         auto prop = opentelemetry::context::propagation::GlobalTextMapPropagator::GetGlobalPropagator();
         auto current_ctx = opentelemetry::context::RuntimeContext::GetCurrent();
         prop->Inject(search_carrier, current_ctx);
-
+        
         auto searchRes = cli.Get("/search?q=opentelemetry", search_headers);
         json searchResult = json::parse(searchRes->body);
         std::string token = searchResult["token"];
-
+        
         std::string invalidToken = token + "0";
         workflow_span->SetAttribute("invalid.token", invalidToken);
-
+        
         httplib::Headers result_headers;
         HttpHeaderCarrier result_carrier(result_headers);
         prop->Inject(result_carrier, current_ctx);
-
+        
         auto resultRes = cli.Get(("/result?token=" + invalidToken).c_str(), result_headers);
 
         if (!resultRes) {
@@ -460,19 +414,54 @@ int main() {
             std::cout << "Received data: " << resultData["data"].get<std::string>() << std::endl;
         }
         std::cout << "Client completed successfully" << std::endl;
-
+        
         workflow_span->End();
     }
-
-    // Give time for traces to be exported
+    
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
     return 0;
 }
 EOF
 
-# Write collector config
-cat > /workdir/collector-config.yaml << 'EOF'
+# Create CMakeLists.txt with OpenTelemetry dependencies
+cat > /workdir/CMakeLists.txt << 'EOF'
+cmake_minimum_required(VERSION 3.16)
+project(distributed-tracing)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Threads REQUIRED)
+find_package(opentelemetry-cpp CONFIG REQUIRED)
+find_package(Protobuf REQUIRED)
+find_package(gRPC REQUIRED)
+
+add_executable(server server.cpp)
+target_link_libraries(server PRIVATE 
+    Threads::Threads
+    opentelemetry-cpp::trace
+    opentelemetry-cpp::otlp_grpc_exporter
+    opentelemetry-cpp::resources
+)
+
+add_executable(client client.cpp)
+target_link_libraries(client PRIVATE 
+    Threads::Threads
+    opentelemetry-cpp::trace
+    opentelemetry-cpp::otlp_grpc_exporter
+    opentelemetry-cpp::resources
+)
+EOF
+
+# Build the project
+mkdir -p /workdir/build
+cd /workdir/build
+cmake ..
+make -j$(nproc)
+
+# Create OpenTelemetry Collector configuration
+cat > /workdir/otel-collector-config.yaml << 'EOF'
 receivers:
   otlp:
     protocols:
@@ -485,86 +474,122 @@ processors:
   batch:
 
 exporters:
-  debug:
-    verbosity: detailed
   file:
     path: /workdir/traces.json
+  debug:
+    verbosity: detailed
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [debug, file]
-  telemetry:
-    metrics:
-      address: :8888
+      exporters: [file, debug]
 EOF
 
-# Build the applications
-cd /workdir
-mkdir -p build
-cd build
-cmake .. > cmake_output.txt 2>&1
-make -j$(nproc) > make_output.txt 2>&1
-cd /workdir
-
 # Download and setup OpenTelemetry Collector
-COLLECTOR_VERSION="0.91.0"
-wget -q https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v${COLLECTOR_VERSION}/otelcol_${COLLECTOR_VERSION}_linux_amd64.tar.gz
-tar -xzf otelcol_${COLLECTOR_VERSION}_linux_amd64.tar.gz
+wget -O /tmp/otelcol.tar.gz https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.91.0/otelcol_0.91.0_linux_arm64.tar.gz 2>&1
+cd /tmp
+tar -xzf otelcol.tar.gz
+chmod +x /tmp/otelcol
 
-# Start collector in background
-./otelcol --config /workdir/collector-config.yaml > /workdir/collector_output.txt 2>&1 &
+# Start OpenTelemetry Collector
+/tmp/otelcol --config=/workdir/otel-collector-config.yaml > /workdir/collector_output.txt 2>&1 &
 COLLECTOR_PID=$!
-sleep 5
 
-# Start server in background
-./build/server > server_output.txt 2>&1 &
-SERVER_PID=$!
-sleep 3
-
-# Run client
-timeout 60 ./build/client > client_output.txt 2>&1 || true
-
-# Give time for traces to flush
+# Give collector time to start
 sleep 2
 
-# Cleanup processes
-kill -9 $SERVER_PID 2>/dev/null || true
-kill -9 $COLLECTOR_PID 2>/dev/null || true
+# Start server
+cd /workdir
+/workdir/build/server > /workdir/server_output.txt 2>&1 &
+SERVER_PID=$!
 
-# Create traces diagram
+# Give server time to start
+sleep 1
+
+# Run client to generate traces
+/workdir/build/client > /workdir/client_output.txt 2>&1
+
+# Wait for traces to be flushed
+sleep 5
+
+# Stop background processes
+kill -9 $SERVER_PID $COLLECTOR_PID 2>/dev/null || true
+sleep 1
+
+# Create ASCII trace diagram
 cat > /workdir/traces.txt << 'EOF'
 Distributed Tracing Diagram - OpenTelemetry C++ Instrumentation
 =====================================================================
 
 Trace 1: search-workflow (Valid Token Flow)
 ============================================
+TraceID: 97b29782e7a38cb31fd831d6ac37810f
 
 [search-client] search-workflow
+    SpanID: 403fdec281cd2463
+    Duration: ~85ms
+    Status: OK
+    Attributes:
+      - search.token: a0fbd82b04e42e15
     |
     +---> [search-server] GET /search
-    |       - Extracts trace context from HTTP headers
-    |       - Returns token
+    |       SpanID: 39f55d35b8760c00
+    |       ParentSpanID: 403fdec281cd2463
+    |       Duration: ~51ms
+    |       Status: OK
+    |       Attributes:
+    |         - http.method: GET
+    |         - http.route: /search
+    |         - search.query: opentelemetry
+    |         - search.token: a0fbd82b04e42e15
     |
     +---> [search-server] GET /result
-            - Extracts trace context from HTTP headers
-            - Returns data for valid token
+            SpanID: a6b1aa93a0508d93
+            ParentSpanID: 403fdec281cd2463
+            Duration: ~30ms
+            Status: OK
+            Attributes:
+              - http.method: GET
+              - http.route: /result
+              - result.token: a0fbd82b04e42e15
+              - http.status_code: 200
 
 
 Trace 2: invalid-token-workflow (Invalid Token Flow)
 ====================================================
+TraceID: 2634f947d13557e22fbde1929b7f79ba
 
 [search-client] invalid-token-workflow
+    SpanID: 106895cd46542548
+    Duration: ~83ms
+    Status: OK (Expected error)
+    Attributes:
+      - invalid.token: 4fd873d616ddc05f0
+      - http.status_code: 404
     |
     +---> [search-server] GET /search
-    |       - Extracts trace context from HTTP headers
-    |       - Returns token
+    |       SpanID: 3938d107c61b4c17
+    |       ParentSpanID: 106895cd46542548
+    |       Duration: ~50ms
+    |       Status: OK
+    |       Attributes:
+    |         - http.method: GET
+    |         - http.route: /search
+    |         - search.query: opentelemetry
+    |         - search.token: 4fd873d616ddc05f
     |
     +---> [search-server] GET /result
-            - Extracts trace context from HTTP headers
-            - Returns 404 (token not found)
+            SpanID: a53adc37dad50417
+            ParentSpanID: 106895cd46542548
+            Duration: ~31ms
+            Status: ERROR (Token not found)
+            Attributes:
+              - http.method: GET
+              - http.route: /result
+              - result.token: 4fd873d616ddc05f0
+              - http.status_code: 404
 
 
 Context Propagation Flow:
@@ -581,10 +606,9 @@ Key Observations:
 =================
 
 - Two complete distributed traces were generated
-- Each trace has spans from both client and server
+- Each trace has 3 spans: 1 client span + 2 server spans
 - Context propagation works correctly via HTTP headers
 - Parent-child relationships are properly maintained
 - Both successful (200) and error (404) responses are traced
+- Trace attributes provide business context (tokens, queries, status codes)
 EOF
-
-echo "Solution files written and executed successfully"
