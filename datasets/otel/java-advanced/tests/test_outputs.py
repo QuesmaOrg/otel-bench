@@ -31,6 +31,45 @@ def test_trace_json_exists():
     print("✓ traces.json file exists")
 
 
+def test_uses_opentelemetry_sdk():
+    """Test that the code actually uses OpenTelemetry SDK, not a custom implementation."""
+    with open('/workdir/App.java', 'r') as f:
+        app_content = f.read()
+
+    # Check for OpenTelemetry imports in App.java
+    otel_imports = [
+        'io.opentelemetry',
+        'opentelemetry'
+    ]
+
+    has_otel_import = any(imp in app_content for imp in otel_imports)
+    assert has_otel_import, (
+        "App.java must use OpenTelemetry SDK (import io.opentelemetry.*). "
+        "Custom tracer implementations are not allowed."
+    )
+
+    # Check that no custom Tracer class is being defined (common cheat)
+    import glob
+    java_files = glob.glob('/workdir/*.java')
+    for java_file in java_files:
+        with open(java_file, 'r') as f:
+            content = f.read()
+        # If there's a Tracer class without OpenTelemetry imports, it's a custom implementation
+        if 'class Tracer' in content and 'io.opentelemetry' not in content:
+            assert False, (
+                f"Custom Tracer implementation detected in {java_file}. "
+                "You must use the OpenTelemetry SDK, not a custom tracer."
+            )
+        # Also check for custom Span class
+        if 'class Span ' in content and 'io.opentelemetry' not in content:
+            assert False, (
+                f"Custom Span implementation detected in {java_file}. "
+                "You must use the OpenTelemetry SDK, not a custom implementation."
+            )
+
+    print("✓ Code uses OpenTelemetry SDK")
+
+
 def test_trace_json_structure():
     """Test the structure and content of the trace JSON."""
     with open('/workdir/traces.json', 'r') as f:
@@ -151,6 +190,7 @@ if __name__ == "__main__":
     try:
         test_console_output()
         test_trace_json_exists()
+        test_uses_opentelemetry_sdk()
         test_trace_json_structure()
         test_context_propagation()
         print("\nAll tests passed!")

@@ -212,7 +212,7 @@ public class App {
 
 ### 1. Comprehensive Instrumentation
 
-Create a mock OpenTelemetry implementation that generates detailed trace data in JSON format to `/workdir/traces.json`. The instrumentation must include:
+Instrument this application using the OpenTelemetry SDK to generate detailed trace data in JSON format to `/workdir/traces.json`. The instrumentation must include:
 
 #### Service-Level Spans
 - **WebService.handleRequest** - Root span for each request
