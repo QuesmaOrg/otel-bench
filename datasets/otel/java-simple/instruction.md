@@ -1,6 +1,6 @@
 # OpenTelemetry Java Instrumentation Task
 
-You are provided with a Java application at `/workdir/Demo.java`. Your task is to instrument this application to generate OpenTelemetry-compatible trace output.
+You are provided with a Java application at `/workdir/Demo.java`. Your task is to instrument this application using OpenTelemetry SDK to generate OpenTelemetry trace output.
 
 ## Source Application
 
@@ -97,10 +97,6 @@ The `/workdir/traces.json` file should contain valid JSON with the trace data. E
 - Run: `java Demo`
 
 ## Implementation Notes
-- You can create a simple tracing utility class to handle span creation and JSON output
-- Use `System.nanoTime()` for timestamps
-- Use `java.util.UUID` for generating trace and span IDs
-- Use a JSON library like org.json or implement a simple JSON serializer
 - Ensure proper parent-child relationships are maintained
 
 Save your instrumented application as `/workdir/Demo.java`.
