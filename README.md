@@ -26,18 +26,18 @@ export ANTHROPIC_API_KEY=...
 harbor run \ 
   --path datasets/otel \ 
   --task-name cpp-simple \ 
-  --agent claude-code \  # only for Claude models
+  --agent terminus-2
   --model anthropic/claude-opus-4-5-20251101
 ```
 
-Task names allow wildcards, so if you want to run all Go tasks in Cursor CLI, it works like:
+Task names allow wildcards, so if you want to run all Go tasks, it works like:
 
 ```bash
 export OPENAI_API_KEY=...
 harbor run \ 
   --path datasets/otel \ 
   --task-name go-* \ 
-  --agent cursor-cli \ 
+  --agent terminus-2 \ 
   --model openai/gpt-5.2
 ```
 
