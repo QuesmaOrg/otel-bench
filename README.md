@@ -25,7 +25,7 @@ Run a single task, for a single model:
 export ANTHROPIC_API_KEY=...
 harbor run \ 
   --path datasets/otel \ 
-  --task cpp-simple \ 
+  -t cpp-simple \ 
   --agent claude-code \  # only for Claude models
   --model anthropic/claude-opus-4-5-20251101
 ```
@@ -36,7 +36,7 @@ Task names allow wildcards, so if you want to run all Go tasks in Cursor CLI, it
 export OPENAI_API_KEY=...
 harbor run \ 
   --path datasets/otel \ 
-  --task go-* \ 
+  -t go-* \ 
   --agent cursor-cli \ 
   --model openai/gpt-5.2
 ```
