@@ -59,7 +59,7 @@ Our overview of Harbor in [Migrating CompileBench to Harbor: standardizing AI ag
 
 ## Content
 
-The OpenTelemetry dataset `datasets/otel` contains a set of tasks testing AI models' ability to instrument applications with OpenTelemetry across 11 programming languages.
+The OpenTelemetry dataset [datasets/otel](./datasets/otel) contains a set of tasks testing AI models' ability to instrument applications with OpenTelemetry across 11 programming languages.
 So far, it contains the following tasks:
 
 * **C++**: [simple](https://quesma.com/benchmarks/otel/tasks/cpp-simple), [advanced](https://quesma.com/benchmarks/otel/tasks/cpp-advanced), [distributed-context-propagation](https://quesma.com/benchmarks/otel/tasks/cpp-distributed-context-propagation)
@@ -78,6 +78,7 @@ So far, it contains the following tasks:
 
 * Tasks are internet dependent and require internet access to run
 * Task solution instructions are not yet included (work in progress)
+* Results are in [benchmark-results/otel](./benchmark-results/otel), for reference and comparison - we generate these from `jobs` (so far pipeline is no included).
 
 ## License
 
