@@ -1,6 +1,6 @@
 # OpenTelemetry Benchmark (OTelBench) by Quesma
 
-A open-source benchmark for evaluating AI models on OpenTelemetry instrumentation tasks across multiple programming languages.
+An open-source benchmark for evaluating AI models on OpenTelemetry instrumentation tasks across multiple programming languages.
 
 * Benchmark: [OTelBench results](https://quesma.com/benchmarks/otel/)
 * Blog post: [Benchmarking OpenTelemetry: Can AI trace your failed login?](https://quesma.com/blog/introducing-otel-bench/)
@@ -10,17 +10,17 @@ A open-source benchmark for evaluating AI models on OpenTelemetry instrumentatio
 Requires [Harbor](https://harborframework.com) (`uv tool install harbor`), Docker, and relevant API KEYs.
 You need your own API keys - be it `ANTHROPIC_API_KEY`.
 
-By default, we use `terminus-2` agent (default for Harbor) agents via [OpenRouter](https://openrouter.ai/) to compare models.
-You are free to use other, including well-known CLI AI Agents like Claude Code, Codex and Cursor CLI.
+By default, we use the `terminus-2` agent (default for Harbor) via [OpenRouter](https://openrouter.ai/) to compare models.
+You are free to use others, including well-known CLI AI Agents like Claude Code, Codex and Cursor CLI.
 
-You need to cone this repo:
+You need to clone this repo:
 
 ```bash
 git clone git@github.com:QuesmaOrg/otel-bench.git
 cd otel-bench
 ```
 
-Run a single tasks, for a single model:
+Run a single task, for a single model:
 
 ```bash
 export ANTHROPIC_API_KEY=...
@@ -60,7 +60,7 @@ Our overview of Harbor in [Migrating CompileBench to Harbor: standardizing AI ag
 
 ## Content
 
-The OpenTelemetry dataset (`datasets/otel/`) contains set of tasks testing AI models' ability to instrument applications with OpenTelemetry across 11 programming languages.
+The OpenTelemetry dataset (`datasets/otel/`) contains a set of tasks testing AI models' ability to instrument applications with OpenTelemetry across 11 programming languages.
 So far, it contains the following tasks:
 
 | Language | Tasks |
@@ -81,6 +81,7 @@ So far, it contains the following tasks:
 
 * Tasks are internet dependent and require internet access to run
 * Task solution instructions are not yet included (work in progress)
+
 
 ## License
 
