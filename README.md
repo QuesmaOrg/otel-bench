@@ -84,4 +84,4 @@ So far, it contains the following tasks:
 
 ## License
 
-See [LICENSE](LICENSE) for details.
+Apache 2.0, see [LICENSE](LICENSE) for details.
