@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     uuid-dev \
     less \
+    pkg-config \
+    libssl-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
