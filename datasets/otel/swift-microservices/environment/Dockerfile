@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     unzip \
     zlib1g-dev \
+    tmux \
+    asciinema \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -43,7 +45,9 @@ RUN ARCH=$(dpkg --print-architecture) && \
 ENV PATH="/root/.local/bin:$PATH"
 
 
+# Install uv for running pytest
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:${PATH}"
 
 # Install otelite from GitHub releases
 RUN ARCH=$(dpkg --print-architecture) && \
