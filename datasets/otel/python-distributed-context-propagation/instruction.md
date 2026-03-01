@@ -187,23 +187,25 @@ if __name__ == "__main__":
 ### 1. Understand the Workflow
 
 Analyze the provided code to understand:
+
 - The complete request between involved services
 
 ### 2. Design Your Instrumentation Strategy
 
-You should only be very minimal and instrument only the critical calls like request handlers
-without adding spans for business calls
-
-The goal is to get business kind of transaction
+Identify distinct user workflows in the client — requests that are logically part of the same operation should share a single trace context.
+Instrument only the critical calls (request handlers) without adding spans for internal business logic.
+Only add grouping/parent spans when they are necessary to link multiple requests — do not wrap a single request in an extra span.
 
 ### 3. Output Requirements
 
 Services should export their traces to an OpenTelemetry Collector:
+
 - Configure both server and client to export traces via OTLP to `localhost:4317` (gRPC) or `localhost:4318` (HTTP)
 - The collector will be configured to export traces to `/workdir/traces.json` file
 - Collector will also provide debug output in `/workdir/collector_output.txt`
 
 The final `/workdir/traces.json` should contain:
+
 - **All spans from all services in OTLP JSON format**
 - Traces should be properly linked showing the distributed nature of the system
 
@@ -219,38 +221,10 @@ Draw ascii trace diagram into /workdir/traces.txt
 - Use pip or requirements.txt for dependency management
 - The project uses Python 3.11+
 
-**Important: File Editing Best Practices**
-- When modifying Python files, use Python itself to write files or use `sed` for targeted changes
-- Avoid using shell heredocs (`cat << 'EOF'`) for large file rewrites as they can cause terminal synchronization issues
-- For small changes, prefer editing specific lines rather than rewriting entire files
-- Example safe file write pattern:
-  ```bash
-  python3 -c "
-  content = '''your content here'''
-  with open('/workdir/file.py', 'w') as f:
-      f.write(content)
-  "
-  ```
-
-**Important: Process Management Best Practices**
-- When stopping background processes, use `kill -9` (SIGKILL) to ensure immediate termination:
-  ```bash
-  kill -9 $PID1 $PID2 2>/dev/null || true
-  ```
-- **NEVER use bare `wait` command** - it can hang indefinitely if processes don't terminate properly
-- If you need to wait for processes to finish, use a timeout:
-  ```bash
-  timeout 5 bash -c 'wait' 2>/dev/null || true
-  ```
-- Or simply use `sleep` for a fixed delay:
-  ```bash
-  sleep 2  # Give processes time to flush output
-  ```
-- Always redirect stderr to avoid error messages from already-terminated processes
-
 ## Success Criteria
 
 Your instrumentation should produce traces that:
+
 - **Demonstrate proper distributed tracing**
 - **Include essential operations** without over-instrumenting (keep it focused)
 - **Link operations correctly**
@@ -258,6 +232,7 @@ Your instrumentation should produce traces that:
 Analyze the code to determine which operations are essential to trace and how they relate to each other.
 
 Save your instrumented files as:
+
 - `/workdir/server.py`
 - `/workdir/client.py`
 - `/workdir/requirements.txt` (with necessary OpenTelemetry dependencies)

@@ -82,7 +82,7 @@ echo "Collector started with PID: $COLLECTOR_PID"
 
 # Start the server
 echo "Starting Python server..."
-python /workdir/server.py > /workdir/server_output.txt 2>&1 &
+python -u /workdir/server.py > /workdir/server_output.txt 2>&1 &
 SERVER_PID=$!
 sleep 2
 
