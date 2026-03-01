@@ -192,7 +192,8 @@ Analyze the provided code to understand:
 
 ### 2. Design Your Instrumentation Strategy
 
-Identify distinct user workflows in the client — requests that are logically part of the same operation should share a single trace context.
+Each trace should represent a distinct user workflow. Requests chained by data are one workflow.
+
 Instrument only the critical calls (request handlers) without adding spans for internal business logic.
 Only add grouping/parent spans when they are necessary to link multiple requests — do not wrap a single request in an extra span.
 
