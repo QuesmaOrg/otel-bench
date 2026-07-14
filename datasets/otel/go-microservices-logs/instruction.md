@@ -16,3 +16,4 @@ Requirements:
 8. Microservices must work even if the OTEL collector is not available.
 
 
+
