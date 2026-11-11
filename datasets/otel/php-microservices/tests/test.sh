@@ -28,7 +28,15 @@ sleep 5
 
 echo "starting the app"
 make start
-echo 5
+
+# Wait until the three services accept connections. The probe is a bare TCP
+# connect on purpose: an HTTP request would be traced and add a second trace ID.
+for port in 8081 8082 8080; do
+    for _ in $(seq 1 60); do
+        (exec 3<>/dev/tcp/localhost/$port) 2>/dev/null && break
+        sleep 1
+    done
+done
 
 echo "Some requests"
 
