@@ -5,7 +5,15 @@ echo "Running Java OpenTelemetry instrumentation test..."
 
 # Compile and run the application
 cd /workdir
-javac Demo.java
+
+# Check if lib/ directory exists with JARs (for OpenTelemetry dependencies)
+if [ -d "lib" ] && ls lib/*.jar 1>/dev/null 2>&1; then
+    echo "Found lib/ directory with JARs, using classpath"
+    javac -cp "lib/*" Demo.java
+else
+    javac Demo.java
+fi
+
 if [ $? -ne 0 ]; then
     echo "Compilation failed"
     echo 0 > /logs/verifier/reward.txt
@@ -13,7 +21,11 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run the demo and capture output
-java Demo > console_output.txt 2>&1
+if [ -d "lib" ] && ls lib/*.jar 1>/dev/null 2>&1; then
+    java -cp ".:lib/*" Demo > console_output.txt 2>&1
+else
+    java Demo > console_output.txt 2>&1
+fi
 if [ $? -ne 0 ]; then
     echo "Execution failed"
     echo 0 > /logs/verifier/reward.txt
