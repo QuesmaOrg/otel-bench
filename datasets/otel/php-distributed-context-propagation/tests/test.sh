@@ -36,7 +36,7 @@ fi
 echo "Cleaning up any existing processes on required ports..."
 for port in 4317 4318 8888 8080; do
     if command -v lsof &> /dev/null; then
-        lsof -ti:$port | xargs kill -9 2>/dev/null || true
+        kill -9 $(lsof -ti:$port) 2>/dev/null || true
     fi
     if command -v fuser &> /dev/null; then
         fuser -k $port/tcp 2>/dev/null || true
