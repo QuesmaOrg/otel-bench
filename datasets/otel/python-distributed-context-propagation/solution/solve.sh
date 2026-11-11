@@ -164,7 +164,6 @@ def main():
 
     def shutdown_handler(signum, frame):
         print("Shutting down server...")
-        server.shutdown()
         # Force flush spans
         trace.get_tracer_provider().force_flush()
         print("Server stopped")
