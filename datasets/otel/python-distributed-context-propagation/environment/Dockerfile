@@ -132,7 +132,6 @@ def main():
 
     def shutdown_handler(signum, frame):
         print("Shutting down server...")
-        server.shutdown()
         print("Server stopped")
         sys.exit(0)
 
