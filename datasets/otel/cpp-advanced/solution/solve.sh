@@ -21,6 +21,25 @@ cat << 'EOF' > /workdir/app.cpp
 #include <map>
 #include <variant>
 
+// One console line per write, so output from concurrent threads cannot interleave.
+struct AtomicLine {
+    std::ostringstream line;
+    ~AtomicLine() {
+        static std::mutex console_mutex;
+        std::lock_guard<std::mutex> lock(console_mutex);
+        std::cout << line.str() << std::flush;
+    }
+    template <typename T>
+    AtomicLine& operator<<(const T& value) {
+        line << value;
+        return *this;
+    }
+    AtomicLine& operator<<(std::ostream& (*manipulator)(std::ostream&)) {
+        line << manipulator;
+        return *this;
+    }
+};
+
 // --- Mock OpenTelemetry Implementation ---
 
 struct SpanContext {
@@ -193,7 +212,7 @@ public:
         span.setAttribute("cache.operation", "SET");
         
         std::this_thread::sleep_for(std::chrono::milliseconds(30));
-        std::cout << "Cache updated: " << key << std::endl;
+        AtomicLine() << "Cache updated: " << key << std::endl;
         span.setStatus("STATUS_CODE_OK");
     }
 };
@@ -216,7 +235,7 @@ public:
         {
             std::lock_guard<std::mutex> lock(queue_mutex);
             messages.push({topic + ":" + message, g_current_context});
-            std::cout << "Published to " << topic << ": " << message << std::endl;
+            AtomicLine() << "Published to " << topic << ": " << message << std::endl;
             cv.notify_one();
         }
         span.setStatus("STATUS_CODE_OK");
@@ -285,7 +304,7 @@ public:
         span.setAttribute("request.id", request_id);
         
         auto start = std::chrono::high_resolution_clock::now();
-        std::cout << "Handling request " << request_id << " for endpoint: " << endpoint << std::endl;
+        AtomicLine() << "Handling request " << request_id << " for endpoint: " << endpoint << std::endl;
 
         try {
             if (endpoint == "/health") {
@@ -331,7 +350,7 @@ public:
                 consume_span.setAttribute("messaging.message", msg_data.first);
                 consume_span.addLink(msg_data.second);
                 
-                std::cout << "Worker processed: " << msg_data.first << std::endl;
+                AtomicLine() << "Worker processed: " << msg_data.first << std::endl;
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
                 consume_span.setStatus("STATUS_CODE_OK");
                 consume_span.end();
@@ -362,15 +381,15 @@ int main() {
     }
 
     auto health_result = service.handleRequest("health_check", "/health");
-    std::cout << "Health check: " << health_result.response << std::endl;
+    AtomicLine() << "Health check: " << health_result.response << std::endl;
 
     for (auto& future : futures) {
         auto result = future.get();
-        std::cout << "Request completed with status: " << result.status_code << ", duration: " << result.duration_ms << "ms" << std::endl;
+        AtomicLine() << "Request completed with status: " << result.status_code << ", duration: " << result.duration_ms << "ms" << std::endl;
     }
 
     service.shutdown();
-    std::cout << "Service shutdown complete" << std::endl;
+    AtomicLine() << "Service shutdown complete" << std::endl;
     return 0;
 }
 EOF
