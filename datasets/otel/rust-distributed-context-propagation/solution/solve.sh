@@ -261,7 +261,9 @@ async fn main() -> std::io::Result<()> {
 
     server.await?;
     
-    let _ = provider.shutdown();
+    // shutdown() blocks until the batch exporter task finishes, and that task runs on this
+    // single-threaded actix runtime, so calling it here never returns.
+    let _ = tokio::task::spawn_blocking(move || provider.shutdown()).await;
     
     println!("Server stopped");
     Ok(())
