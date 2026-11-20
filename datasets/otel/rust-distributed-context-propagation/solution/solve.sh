@@ -497,14 +497,11 @@ EOF
 # Set PATH to include cargo
 export PATH=/usr/local/cargo/bin:$PATH
 
-# Downgrade time crate for Rust version compatibility
-cargo update time@0.3.46 --precise 0.3.36
-
 # Build the project
 cargo build --release > build.log 2>&1
 
 # Download and setup OpenTelemetry Collector
-wget -q https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.93.0/otelcol-contrib_0.93.0_linux_arm64.tar.gz -O /tmp/otelcol.tar.gz
+wget -q https://github.com/open-telemetry/opentelemetry-collector-releases/releases/download/v0.93.0/otelcol-contrib_0.93.0_linux_$(dpkg --print-architecture).tar.gz -O /tmp/otelcol.tar.gz
 tar -xzf /tmp/otelcol.tar.gz -C /workdir otelcol-contrib
 chmod +x /workdir/otelcol-contrib
 
