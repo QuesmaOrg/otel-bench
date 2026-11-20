@@ -41,7 +41,7 @@ class DatabaseService {
         // Simulate database query with potential failures
         Thread.sleep(50 + random.nextInt(150));
         
-        if (random.nextDouble() < 0.2) { // 20% chance of failure
+        if (requestId.equals("req_2")) { // one of the five requests fails
             throw new RuntimeException("Database connection timeout");
         }
         
