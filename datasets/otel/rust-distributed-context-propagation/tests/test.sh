@@ -154,6 +154,9 @@ fi
 # Kill the server
 echo "Stopping server..."
 kill $SERVER_PID 2>/dev/null
+# Like the client above, a server that hangs in tracer shutdown must not stall the verifier.
+for _ in $(seq 10); do kill -0 $SERVER_PID 2>/dev/null || break; sleep 1; done
+kill -9 $SERVER_PID 2>/dev/null
 wait $SERVER_PID 2>/dev/null
 
 # Give collector time to flush traces
