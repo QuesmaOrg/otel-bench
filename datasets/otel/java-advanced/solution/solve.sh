@@ -244,7 +244,7 @@ class DatabaseService {
         try (Scope scope = span.makeCurrent()) {
             Thread.sleep(50 + random.nextInt(150));
             
-            if (random.nextDouble() < 0.2) {
+            if (requestId.equals("req_2")) { // one of the five requests fails
                 throw new RuntimeException("Database connection timeout");
             }
             
